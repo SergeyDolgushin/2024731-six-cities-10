@@ -11,13 +11,9 @@ const HeaderOptions = {
 
 function PropertyPage({ cards }: CardsProps): JSX.Element {
   const { selectedCard } = useParams<string>();
-  let cardId = 0;
+  const cardId = Number(selectedCard);
 
-  if (typeof selectedCard === 'string') {
-    cardId = parseInt(selectedCard, 10);
-  }
   const card = cards.filter((item) => item.cardId === cardId);
-
   const cardsView: JSX.Element[] = cards.slice(0, 3).map((item) => <MainItemCard card={item} key={item.cardId} />);
 
   if (!card.length) {
