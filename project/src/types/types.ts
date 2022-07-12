@@ -1,35 +1,50 @@
+type Card = {
+  price: number,
+  rating: number,
+  images: string[],
+  title: string,
+  cardId: number,
+  isFavorite: boolean
+  isPremium: boolean,
+  type: string,
+  previewImage: string,
+  location: Location,
+  city: City,
+  goods: string[],
+  maxAdults: number,
+  host: Host,
+  description: string,
+  bedrooms: number,
+};
+
 type CardProps = {
-  cardProps: {
-    price: number,
-    paymentPeriod: string,
-    rating: number,
-    urlImg: string,
-    name: string,
-    cardId: number,
-    isFavorite: boolean
-    isPremium: boolean,
-    type: string,
-    urlPreview: string
-  }
+  card: Card
 };
 
 type CardsProps = {
-  roomInfos: {
-    price: number,
-    paymentPeriod: string,
-    rating: number,
-    urlImg: string,
-    name: string,
-    cardId: number,
-    isFavorite: boolean
-    isPremium: boolean,
-    type: string,
-    urlPreview: string
-  }[]
+  cards: Card[]
 };
 
 type CardsSectionMainPageProps = {
-  cards: JSX.Element[]
-}
+  cardsView: JSX.Element[]
+};
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps };
+type Location = {
+  latitude: number
+  longitude: number
+  zoom: number
+};
+
+type City = {
+  location: Location,
+  name: string
+};
+
+type Host = {
+  id: number,
+  name: string,
+  isPro: boolean,
+  avatarUrl: string
+};
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card };

@@ -14,14 +14,14 @@ const VisibilityOptions = {
 type cards = JSX.Element[];
 
 
-function MainPage({ roomInfos }: CardsProps): JSX.Element {
+function MainPage({ cards }: CardsProps): JSX.Element {
   const { isLogged, isEmpty } = VisibilityOptions;
-  const cards: cards = roomInfos.map((item, i) => <MainItemCard cardProps={item} key={item.cardId} />);
+  const cardsView: cards = cards.map((item, i) => <MainItemCard card={item} key={item.cardId} />);
 
   return (
     <div className="page page--gray page--main">
       <CommonHeader isLogged={isLogged} />
-      {isEmpty ? <EmptyMainPage /> : <CardsSectionMainPage cards={cards} />}
+      {isEmpty ? <EmptyMainPage /> : <CardsSectionMainPage cardsView={cardsView} />}
     </div>
   );
 }

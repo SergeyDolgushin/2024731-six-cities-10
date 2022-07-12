@@ -1,27 +1,15 @@
 import CommonHeader from '../../components/common-header/common-header';
 import FavoriteCard from '../../components/favorite-card/favorite-card';
 
+import type { CardsProps } from '../../types/types';
+
 const HeaderOptions = {
   isLogged: true
 };
 
-type MainPageCardProps = {
-  roomInfos: {
-    price: number,
-    paymentPeriod: string,
-    rating: number,
-    urlImg: string,
-    name: string,
-    cardId: number,
-    isFavorite: boolean
-    isPremium: boolean,
-    type: string,
-    urlPreview: string
-  }[]
-};
 
-function FavoritesPage({ roomInfos }: MainPageCardProps): JSX.Element {
-  const cards = roomInfos.map((item, i) => <FavoriteCard cardProps={item} key={item.cardId} />);
+function FavoritesPage({ cards }: CardsProps): JSX.Element {
+  const cardsView = cards.map((item, i) => <FavoriteCard card={item} key={item.cardId} />);
 
   return (
     <div className="page">
@@ -40,7 +28,7 @@ function FavoritesPage({ roomInfos }: MainPageCardProps): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {cards}
+                  {cardsView}
                 </div>
               </li>
             </ul>
