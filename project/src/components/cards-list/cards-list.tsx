@@ -14,7 +14,7 @@ function CardsList({ cards }: CardsProps): JSX.Element {
   const cardsView: JSX.Element[] = cards.map((item, i) => <MainItemCard card={item} key={item.cardId} handlerCardMouseOver={handlerCardMouseOver} />);
 
   return (
-    <div className="cities">
+    <div className="cities" id={`${currentCardId}`}>
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
