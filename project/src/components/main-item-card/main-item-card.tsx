@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom';
+import { MouseEvent } from 'react';
 
-import type { CardProps } from '../../types/types';
+import type { Card } from '../../types/types';
 
+type MainItemCardProps = {
+  card: Card,
+  handlerCardMouseOver?: (evt: MouseEvent<HTMLDivElement>) => void;
+  selectPath?: boolean,
+}
 
-function MainItemCard({ card }: CardProps): JSX.Element {
+function MainItemCard({ card, handlerCardMouseOver, selectPath }: MainItemCardProps): JSX.Element {
   const { price, rating, images, title, type, cardId } = card;
 
   return (
-    <article className="cities__card place-card">
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${cardId}`}>
+    <article className="cities__card place-card" id={`${cardId}`} onMouseOver={handlerCardMouseOver}>
+      <div className="cities__image-wrapper place-card__image-wrapper" >
+        <Link to={`offer/${cardId}`} >
           <img className="place-card__image" src={images[0]} width="260" height="200" alt={title} />
         </Link>
       </div>

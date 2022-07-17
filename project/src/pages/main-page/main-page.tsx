@@ -1,9 +1,11 @@
 import CommonHeader from '../../components/common-header/common-header';
-import MainItemCard from '../../components/main-item-card/main-item-card';
-import CardsSectionMainPage from '../../components/cards-section-main-page/cards-section';
+import CardsList from '../../components/cards-list/cards-list';
 import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
 
 import type { CardsProps } from '../../types/types';
+import MainSection from '../../components/main-section/main-section';
+import CitiesTabs from '../../components/cities-tabs/cities-tabs';
+import { tabs } from '../../const';
 
 
 const VisibilityOptions = {
@@ -11,17 +13,16 @@ const VisibilityOptions = {
   isEmpty: false
 };
 
-type cards = JSX.Element[];
-
-
 function MainPage({ cards }: CardsProps): JSX.Element {
   const { isLogged, isEmpty } = VisibilityOptions;
-  const cardsView: cards = cards.map((item, i) => <MainItemCard card={item} key={item.cardId} />);
 
   return (
     <div className="page page--gray page--main">
       <CommonHeader isLogged={isLogged} />
-      {isEmpty ? <EmptyMainPage /> : <CardsSectionMainPage cardsView={cardsView} />}
+      <MainSection isEmpty={isEmpty}>
+        <CitiesTabs tabs={tabs} />
+        {isEmpty ? <EmptyMainPage /> : <CardsList cards={cards} />}
+      </MainSection>
     </div>
   );
 }

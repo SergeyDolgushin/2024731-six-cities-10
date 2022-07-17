@@ -47,4 +47,18 @@ type Host = {
   avatarUrl: string
 };
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps, Card };
+type ITabProps = {
+  isActive: boolean,
+  name: string,
+  id: number,
+}
+
+type TabProps = {
+  tab: ITabProps
+}
+
+type TabsProps = {
+  tabs: ITabProps[]
+}
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps };

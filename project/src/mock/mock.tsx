@@ -3,7 +3,14 @@ const roomInfos = [
     price: 80,
     isFavorite: true,
     rating: 100,
-    images: ['img/room.jpg'],
+    images: [
+      'https://10.react.pages.academy/static/hotel/13.jpg',
+      'https://10.react.pages.academy/static/hotel/10.jpg',
+      'https://10.react.pages.academy/static/hotel/3.jpg',
+      'https://10.react.pages.academy/static/hotel/20.jpg',
+      'https://10.react.pages.academy/static/hotel/15.jpg',
+      'https://10.react.pages.academy/static/hotel/19.jpg'
+    ],
     title: 'Wood and stone place',
     cardId: 0,
     isPremium: true,
@@ -15,14 +22,19 @@ const roomInfos = [
       'zoom': 13
     },
     city: {
-      'name': 'Dusseldorf',
+      'name': 'Paris',
       'location': {
-        'latitude': 51.225402,
-        'longitude': 6.776314,
+        'latitude': 48.85661,
+        'longitude': 2.351499,
         'zoom': 13
       }
     },
-    goods: ['air', 'table'],
+    goods: [
+      'Laptop friendly workspace',
+      'Washer',
+      'Breakfast',
+      'Air conditioning'
+    ],
     maxAdults: 2,
     host: {
       id: 1,
@@ -141,9 +153,17 @@ const roomInfos = [
   {
     price: 180,
     paymentPeriod: 'night',
-    isFavorite: false,
+    isFavorite: true,
     rating: 30,
-    images: ['img/apartment-03.jpg'],
+    images: [
+      'https://10.react.pages.academy/static/hotel/8.jpg',
+      'https://10.react.pages.academy/static/hotel/6.jpg',
+      'https://10.react.pages.academy/static/hotel/5.jpg',
+      'https://10.react.pages.academy/static/hotel/14.jpg',
+      'https://10.react.pages.academy/static/hotel/1.jpg',
+      'https://10.react.pages.academy/static/hotel/4.jpg',
+      'https://10.react.pages.academy/static/hotel/7.jpg',
+    ],
     title: 'Nice, cozy, warm big bed apartment',
     cardId: 4,
     isPremium: true,

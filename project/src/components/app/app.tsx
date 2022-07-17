@@ -21,7 +21,7 @@ function App({ cards }: CardsProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
               <FavoritesPage cards={cards} />
             </PrivateRoute>

@@ -1,5 +1,5 @@
 import CommonHeader from '../../components/common-header/common-header';
-import FavoriteCard from '../../components/favorite-card/favorite-card';
+import { FavoritesCities } from '../../components/favorites-cities/favorites-cities';
 
 import type { CardsProps } from '../../types/types';
 
@@ -9,7 +9,15 @@ const HeaderOptions = {
 
 
 function FavoritesPage({ cards }: CardsProps): JSX.Element {
-  const cardsView = cards.map((item, i) => <FavoriteCard card={item} key={item.cardId} />);
+  const cities = cards.map((item) => item.isFavorite ? item.city.name : null);
+  const currentCities = new Set(cities);
+  const favoritesPlaces: JSX.Element[] = [];
+
+  currentCities.forEach((item) => {
+    if (item) {
+      favoritesPlaces.push(<FavoritesCities cards={cards} city={item} key={item} />);
+    }
+  });
 
   return (
     <div className="page">
@@ -19,18 +27,7 @@ function FavoritesPage({ cards }: CardsProps): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="/#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  {cardsView}
-                </div>
-              </li>
+              {favoritesPlaces}
             </ul>
           </section>
         </div>
