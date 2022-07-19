@@ -61,4 +61,12 @@ type TabsProps = {
   tabs: ITabProps[]
 }
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps };
+type Point = {
+  title: string;
+  lat: number;
+  lng: number;
+};
+
+type Points = Point[];
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps, Point, Points, City };

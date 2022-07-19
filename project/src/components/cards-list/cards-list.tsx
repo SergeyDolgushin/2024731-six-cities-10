@@ -1,5 +1,6 @@
 import MainItemCard from '../../components/main-item-card/main-item-card';
 import FormFilter from '../filter-form/filter-form';
+import Map from '../map/map';
 
 import type { CardsProps } from '../../types/types';
 import { MouseEvent, useState } from 'react';
@@ -12,6 +13,8 @@ function CardsList({ cards }: CardsProps): JSX.Element {
   };
 
   const cardsView: JSX.Element[] = cards.map((item, i) => <MainItemCard card={item} key={item.cardId} handlerCardMouseOver={handlerCardMouseOver} />);
+  const points = [{ 'lat': cards[0].location.latitude, 'lng': cards[0].location.longitude, 'title': cards[0].title }];
+  const point = { 'lat': cards[0].location.latitude, 'lng': cards[0].location.longitude, 'title': cards[0].title };
 
   return (
     <div className="cities" id={`${currentCardId}`}>
@@ -25,7 +28,9 @@ function CardsList({ cards }: CardsProps): JSX.Element {
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+
+          <Map city={cards[0].city} points={points} selectedPoint={point} />
+
         </div>
       </div>
     </div>

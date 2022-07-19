@@ -17,15 +17,15 @@ const roomInfos = [
     type: 'Palace',
     previewImage: 'img/apartment-small-03.jpg',
     location: {
-      'latitude': 51.225402,
-      'longitude': 6.776314,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 13
     },
     city: {
       'name': 'Paris',
       'location': {
-        'latitude': 48.85661,
-        'longitude': 2.351499,
+        'latitude': 52.3909553943508,
+        'longitude': 4.85309666406198,
         'zoom': 13
       }
     },
