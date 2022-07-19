@@ -8,7 +8,7 @@ function ReviewForm() {
     rating: 0
   });
 
-  const handleOnChangeField = (evt: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>) => {
+  const handleOnChangeField = (evt: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
   };

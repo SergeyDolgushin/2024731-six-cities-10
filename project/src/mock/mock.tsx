@@ -17,15 +17,15 @@ const roomInfos = [
     type: 'Palace',
     previewImage: 'img/apartment-small-03.jpg',
     location: {
-      'latitude': 52.3909553943508,
-      'longitude': 4.85309666406198,
+      'latitude': 48.843610000000005,
+      'longitude': 2.351499,
       'zoom': 13
     },
     city: {
       'name': 'Paris',
       'location': {
-        'latitude': 52.3909553943508,
-        'longitude': 4.85309666406198,
+        'latitude': 48.85661,
+        'longitude': 2.351499,
         'zoom': 13
       }
     },
@@ -58,7 +58,7 @@ const roomInfos = [
     previewImage: 'img/apartment-small-04.jpg',
     location: {
       'latitude': 51.225402,
-      'longitude': 6.776314,
+      'longitude': 6.706314,
       'zoom': 13
     },
     city: {
@@ -93,7 +93,7 @@ const roomInfos = [
     previewImage: 'img/apartment-small-03.jpg',
     location: {
       'latitude': 51.225402,
-      'longitude': 6.776314,
+      'longitude': 6.996314,
       'zoom': 13
     },
     city: {
@@ -128,7 +128,7 @@ const roomInfos = [
     previewImage: 'img/room-small.jpg',
     location: {
       'latitude': 51.225402,
-      'longitude': 6.776314,
+      'longitude': 6.476314,
       'zoom': 13
     },
     city: {
@@ -170,8 +170,8 @@ const roomInfos = [
     type: 'Tent',
     previewImage: 'img/apartment-small-04.jpg',
     location: {
-      'latitude': 51.225402,
-      'longitude': 6.776314,
+      'latitude': 51.235402,
+      'longitude': 6.576314,
       'zoom': 13
     },
     city: {

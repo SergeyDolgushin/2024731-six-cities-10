@@ -9,7 +9,6 @@ function useMap(
   const [map, setMap] = useState<Map | null>(null);
   const { latitude, longitude } = city.location;
   useEffect(() => {
-    console.log(city, mapRef.current, map);
     if (mapRef.current !== null && map === null) {
       const instance = new Map(mapRef.current, {
         center: {
@@ -30,7 +29,6 @@ function useMap(
       setMap(instance);
     }
   }, [mapRef, map, city]);
-  console.log(map);
   return map;
 }
 

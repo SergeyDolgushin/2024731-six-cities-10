@@ -47,18 +47,18 @@ type Host = {
   avatarUrl: string
 };
 
-type ITabProps = {
+type Tab = {
   isActive: boolean,
   name: string,
   id: number,
 }
 
 type TabProps = {
-  tab: ITabProps
+  tab: Tab
 }
 
 type TabsProps = {
-  tabs: ITabProps[]
+  tabs: Tab[]
 }
 
 type Point = {

@@ -29,10 +29,8 @@ function Map(props: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-  console.log(map);
 
   useEffect(() => {
-    console.log(map);
     if (map) {
       points.forEach((point) => {
         const marker = new Marker({
@@ -52,11 +50,9 @@ function Map(props: MapProps): JSX.Element {
   }, [map, points, selectedPoint]);
 
   return (
-
     <section className="cities__map map">
-      <div style={{ height: '500px' }} ref={mapRef}></div>
+      <div style={{ height: '800px' }} ref={mapRef}></div>
     </section >
-
   );
 }
 
