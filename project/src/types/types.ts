@@ -47,18 +47,26 @@ type Host = {
   avatarUrl: string
 };
 
-type ITabProps = {
+type Tab = {
   isActive: boolean,
   name: string,
   id: number,
 }
 
 type TabProps = {
-  tab: ITabProps
+  tab: Tab
 }
 
 type TabsProps = {
-  tabs: ITabProps[]
+  tabs: Tab[]
 }
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps };
+type Point = {
+  title: string;
+  lat: number;
+  lng: number;
+};
+
+type Points = Point[];
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps, Point, Points, City };

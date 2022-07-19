@@ -1,5 +1,4 @@
 import Tab from '../tab/tab';
-// import { tabs } from '../../const';
 import { TabsProps } from '../../types/types';
 
 function CitiesTabs({ tabs }: TabsProps): JSX.Element {

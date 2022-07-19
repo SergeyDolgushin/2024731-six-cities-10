@@ -10,10 +10,17 @@ type MainItemCardProps = {
 }
 
 function MainItemCard({ card, handlerCardMouseOver, selectPath }: MainItemCardProps): JSX.Element {
-  const { price, rating, images, title, type, cardId } = card;
+  const { price, rating, images, title, type, cardId, location } = card;
+  const { longitude, latitude } = location;
 
   return (
-    <article className="cities__card place-card" id={`${cardId}`} onMouseOver={handlerCardMouseOver}>
+    <article
+      className="cities__card place-card"
+      data-lat={`${latitude}`}
+      data-lng={`${longitude}`}
+      data-title={`${title}`}
+      onMouseOver={handlerCardMouseOver}
+    >
       <div className="cities__image-wrapper place-card__image-wrapper" >
         <Link to={`offer/${cardId}`} >
           <img className="place-card__image" src={images[0]} width="260" height="200" alt={title} />
@@ -39,7 +46,7 @@ function MainItemCard({ card, handlerCardMouseOver, selectPath }: MainItemCardPr
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/#">{title}</a>
+          <Link to={`offer/${cardId}`} >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

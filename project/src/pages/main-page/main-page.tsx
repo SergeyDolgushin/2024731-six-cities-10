@@ -13,15 +13,22 @@ const VisibilityOptions = {
   isEmpty: false
 };
 
+const currentCity = {
+  name: 'Dusseldorf'
+};
+
 function MainPage({ cards }: CardsProps): JSX.Element {
   const { isLogged, isEmpty } = VisibilityOptions;
+
+  const cardsOfCity = cards.filter((card) => card.city.name === currentCity.name);
+  VisibilityOptions.isEmpty = (cardsOfCity.length === 0);
 
   return (
     <div className="page page--gray page--main">
       <CommonHeader isLogged={isLogged} />
       <MainSection isEmpty={isEmpty}>
         <CitiesTabs tabs={tabs} />
-        {isEmpty ? <EmptyMainPage /> : <CardsList cards={cards} />}
+        {isEmpty ? <EmptyMainPage /> : <CardsList cards={cardsOfCity} />}
       </MainSection>
     </div>
   );
