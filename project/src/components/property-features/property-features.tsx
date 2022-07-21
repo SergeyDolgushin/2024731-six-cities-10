@@ -5,21 +5,18 @@ type PropertyFeaturesProps = {
 };
 
 function PropertyFeatures({ type, adults, bedrooms }: PropertyFeaturesProps) {
-  const propertyObject = {
-    entire: type,
-    bedrooms: `${bedrooms} bedrooms`,
-    adults: `Max ${adults} adults`
-  };
-
-  const propertiesList: JSX.Element[] = Object.entries(propertyObject).map((item) => (
-    <li className={`property__feature property__feature--${item[0]}`} key={item[0]}>
-      {item[1]}
-    </li>
-  ));
 
   return (
     <ul className="property__features">
-      {propertiesList}
+      <li className="property__feature property__feature--entire">
+        {type}
+      </li>
+      <li className="property__feature property__feature--bedrooms">
+        {`${bedrooms} bedrooms`}
+      </li>
+      <li className="property__feature property__feature--adults">
+        {`Max ${adults} adults`}
+      </li>
     </ul>
   );
 }
