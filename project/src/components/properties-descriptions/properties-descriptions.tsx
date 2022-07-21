@@ -1,18 +1,15 @@
 import { ReviewSection } from '../../components/review-section/review-section';
 import { Card } from '../../types/types';
+import PropertyFeatures from '../property-features/property-features';
+import PropertyGoods from '../property-goods/property-goods';
+import PropertyHost from '../propery-host/property-host';
 
 type cardProps = {
   card: Card[];
 };
 
 function PropertiesDescriptions({ card }: cardProps) {
-  const { isPremium, description, rating, goods, title } = card[0];
-
-  const propertiesGoods: JSX.Element[] = goods.map((item) => (
-    <li className="property__inside-item" key={item}>
-      {item}
-    </li>
-  ));
+  const { isPremium, rating, goods, title, price, type, maxAdults, bedrooms } = card[0];
 
   return (
     <div className="property__container container">
@@ -38,53 +35,17 @@ function PropertiesDescriptions({ card }: cardProps) {
           </div>
           <span className="property__rating-value rating__value">{rating / 20}</span>
         </div>
-        <ul className="property__features">
-          <li className="property__feature property__feature--entire">
-            Apartment
-          </li>
-          <li className="property__feature property__feature--bedrooms">
-            3 Bedrooms
-          </li>
-          <li className="property__feature property__feature--adults">
-            Max 4 adults
-          </li>
-        </ul>
+        <PropertyFeatures type={type} adults={maxAdults} bedrooms={bedrooms} />
         <div className="property__price">
-          <b className="property__price-value">&euro;120</b>
+          <b className="property__price-value">&euro;{price}</b>
           <span className="property__price-text">&nbsp;night</span>
         </div>
-        <div className="property__inside">
-          <h2 className="property__inside-title">What&apos;s inside</h2>
-          <ul className="property__inside-list">
-            {propertiesGoods}
-          </ul>
-        </div>
-        <div className="property__host">
-          <h2 className="property__host-title">Meet the host</h2>
-          <div className="property__host-user user">
-            <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-              <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
-            </div>
-            <span className="property__user-name">
-              Angelina
-            </span>
-            <span className="property__user-status">
-              Pro
-            </span>
-          </div>
-          <div className="property__description">
-            <p className="property__text">
-              {description}
-            </p>
-            <p className="property__text">
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-            </p>
-          </div>
-        </div>
+        <PropertyGoods goods={goods} />
+        <PropertyHost card={card} />
         <ReviewSection />
       </div>
     </div>
   );
 }
 
-export { PropertiesDescriptions };
+export default PropertiesDescriptions;

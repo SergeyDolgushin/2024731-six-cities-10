@@ -5,7 +5,7 @@ type GalleryProps = {
 };
 
 function PropertiesGallery({ images, title }: GalleryProps) {
-  const imagesContainer: JSX.Element[] = images.map((item) => (
+  const imagesContainer: JSX.Element[] = images.slice(0, 6).map((item) => (
     <div className="property__image-wrapper" key={item}>
       <img className="property__image" src={item} alt={title} />
     </div>
@@ -20,4 +20,4 @@ function PropertiesGallery({ images, title }: GalleryProps) {
   );
 }
 
-export { PropertiesGallery };
+export default PropertiesGallery;

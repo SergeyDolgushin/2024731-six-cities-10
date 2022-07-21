@@ -2,33 +2,39 @@ import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
 import useMap from '../../hooks/useMap';
 import { City, Points, Point } from '../../types/types';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MAP_CLASS_NAME } from '../../const';
 
 import 'leaflet/dist/leaflet.css';
+import './style.css';
 
 type MapProps = {
   city: City;
   points: Points;
   selectedPoint: Point | undefined;
+  className: string;
 };
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [13, 39]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [13, 39]
 });
 
+const MAP_HEIGHT_MAIN_PAGE = '800px';
+const MAP_HEIGHT_PROPERTY_PAGE = '579px';
+
 function Map(props: MapProps): JSX.Element {
-  const { city, points, selectedPoint } = props;
+  const { city, points, selectedPoint, className } = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const mapHeight = (className === MAP_CLASS_NAME) ? MAP_HEIGHT_MAIN_PAGE : MAP_HEIGHT_PROPERTY_PAGE;
 
   useEffect(() => {
     if (map) {
@@ -50,8 +56,8 @@ function Map(props: MapProps): JSX.Element {
   }, [map, points, selectedPoint]);
 
   return (
-    <section className="cities__map map">
-      <div style={{ height: '800px' }} ref={mapRef}></div>
+    <section className={`map ${className}`}>
+      <div style={{ height: `${mapHeight}` }} ref={mapRef}></div>
     </section >
   );
 }

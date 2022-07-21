@@ -69,4 +69,12 @@ type Point = {
 
 type Points = Point[];
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps, Point, Points, City };
+type Comment = {
+  comment: string;
+  date: string;
+  id: number;
+  rating: number;
+  user: Host;
+};
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, TabProps, TabsProps, Point, Points, City, Comment };
