@@ -21,4 +21,4 @@ function PropertyFeatures({ type, adults, bedrooms }: PropertyFeaturesProps) {
   );
 }
 
-export default PropertyFeatures;
+export { PropertyFeatures };

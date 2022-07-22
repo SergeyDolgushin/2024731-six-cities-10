@@ -1,4 +1,4 @@
-import CommonHeader from '../../components/common-header/common-header';
+import { CommonHeader } from '../../components/common-header/common-header';
 
 const HeaderOptions = {
   isLogged: true
@@ -38,4 +38,4 @@ function LoginScreen(): JSX.Element {
   );
 }
 
-export default LoginScreen;
+export { LoginScreen };

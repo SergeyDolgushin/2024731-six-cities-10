@@ -18,4 +18,4 @@ function FormFilter(): JSX.Element {
   );
 }
 
-export default FormFilter;
+export { FormFilter };

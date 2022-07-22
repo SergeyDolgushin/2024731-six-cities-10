@@ -1,4 +1,4 @@
-import CommonHeader from '../../components/common-header/common-header';
+import { CommonHeader } from '../../components/common-header/common-header';
 import { FavoritesCities } from '../../components/favorites-cities/favorites-cities';
 
 import type { CardsProps } from '../../types/types';
@@ -41,4 +41,4 @@ function FavoritesPage({ cards }: CardsProps): JSX.Element {
   );
 }
 
-export default FavoritesPage;
+export { FavoritesPage };

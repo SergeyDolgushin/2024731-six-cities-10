@@ -60,4 +60,4 @@ function UserNotLogged(): JSX.Element {
   );
 }
 
-export default CommonHeader;
+export { CommonHeader };

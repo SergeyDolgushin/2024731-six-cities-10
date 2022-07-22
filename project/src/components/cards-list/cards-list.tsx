@@ -1,19 +1,22 @@
-import MainItemCard from '../../components/main-item-card/main-item-card';
-import FormFilter from '../filter-form/filter-form';
-import Map from '../map/map';
+import { MainItemCard } from '../../components/main-item-card/main-item-card';
+import { FormFilter } from '../filter-form/filter-form';
+import { Map } from '../map/map';
 import { MAP_CLASS_NAME } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 import type { CardsProps, Point } from '../../types/types';
 import { MouseEvent, useState } from 'react';
 
 function CardsList({ cards }: CardsProps): JSX.Element {
   const [currentCardId, setCardId] = useState<DOMStringMap | null>(null);
+  const currentCity = useAppSelector((state) => state.name);
 
   const handlerCardMouseOver = (evt: MouseEvent<HTMLDivElement>) => {
     setCardId(evt.currentTarget.dataset);
   };
 
   const cardsView: JSX.Element[] = cards.map((item) => <MainItemCard card={item} key={item.cardId} handlerCardMouseOver={handlerCardMouseOver} />);
+  const currentLocation = cards.filter((item) => item.city.name === currentCity);
   const points = cards.map((card) => {
     const container: Point = {
       lat: card.location.latitude,
@@ -47,11 +50,11 @@ function CardsList({ cards }: CardsProps): JSX.Element {
           </div>
         </section>
         <div className="cities__right-section">
-          <Map className={MAP_CLASS_NAME} city={cards[0].city} points={points} selectedPoint={point()} />
+          <Map className={MAP_CLASS_NAME} city={currentLocation[0].city} points={points} selectedPoint={point()} />
         </div>
       </div>
     </div>
   );
 }
 
-export default CardsList;
+export { CardsList };

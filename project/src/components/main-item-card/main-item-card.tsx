@@ -54,4 +54,4 @@ function MainItemCard({ card, handlerCardMouseOver, selectPath }: MainItemCardPr
   );
 }
 
-export default MainItemCard;
+export { MainItemCard };
