@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
-import useMap from '../../hooks/useMap';
+import { useMap } from '../../hooks/useMap';
 import { City, Points, Point } from '../../types/types';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MAP_CLASS_NAME } from '../../const';
 
@@ -38,6 +38,7 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
+
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.lat,
@@ -62,4 +63,4 @@ function Map(props: MapProps): JSX.Element {
   );
 }
 
-export default Map;
+export { Map };

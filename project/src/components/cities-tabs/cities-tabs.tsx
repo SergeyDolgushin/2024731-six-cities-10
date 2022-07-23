@@ -1,18 +1,21 @@
 import Tab from '../tab/tab';
-import { TabsProps } from '../../types/types';
+import { CITIES } from '../../const';
 
-function CitiesTabs({ tabs }: TabsProps): JSX.Element {
-  const tabsView: JSX.Element[] = tabs.map((item) => <Tab tab={item} key={item.id} />);
+function makeTabs(): JSX.Element[] {
+  return CITIES.map((name: string) => <Tab name={name} key={name} />);
+}
+
+function CitiesTabs(): JSX.Element {
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {tabsView}
+          {makeTabs()}
         </ul>
       </section>
     </div>
   );
 }
 
-export default CitiesTabs;
+export { CitiesTabs };

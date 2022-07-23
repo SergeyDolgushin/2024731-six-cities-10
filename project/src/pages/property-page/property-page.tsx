@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-import CommonHeader from '../../components/common-header/common-header';
-import PageNotFound from '../../components/page-not-found/page-not-found';
-import MainItemCard from '../../components/main-item-card/main-item-card';
-import Map from '../../components/map/map';
+import { CommonHeader } from '../../components/common-header/common-header';
+import { PageNotFound } from '../../components/page-not-found/page-not-found';
+import { MainItemCard } from '../../components/main-item-card/main-item-card';
+import { Map } from '../../components/map/map';
 import PropertiesGallery from '../../components/properties-gallery/properties-gallery';
-import PropertiesDescriptions from '../../components/properties-descriptions/properties-descriptions';
+import { PropertiesDescriptions } from '../../components/properties-descriptions/properties-descriptions';
 
 import type { CardsProps, Point } from '../../types/types';
 
@@ -73,4 +73,4 @@ function PropertyPage({ cards }: CardsProps): JSX.Element {
   }
 }
 
-export default PropertyPage;
+export { PropertyPage };

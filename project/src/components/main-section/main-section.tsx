@@ -14,4 +14,4 @@ function MainSection({ isEmpty, children }: MainChildrens): JSX.Element {
   );
 }
 
-export default MainSection;
+export { MainSection };

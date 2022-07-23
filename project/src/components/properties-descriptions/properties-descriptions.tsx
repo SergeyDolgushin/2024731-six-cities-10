@@ -1,6 +1,6 @@
 import { ReviewSection } from '../../components/review-section/review-section';
 import { Card } from '../../types/types';
-import PropertyFeatures from '../property-features/property-features';
+import { PropertyFeatures } from '../property-features/property-features';
 import PropertyGoods from '../property-goods/property-goods';
 import PropertyHost from '../propery-host/property-host';
 
@@ -48,4 +48,4 @@ function PropertiesDescriptions({ card }: cardProps) {
   );
 }
 
-export default PropertiesDescriptions;
+export { PropertiesDescriptions };
