@@ -15,6 +15,7 @@ import { roomInfos } from '../../mock/mock';
 
 function App(): JSX.Element {
   const cards = useAppSelector((state) => state.offers);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getOffers({ offers: roomInfos }));

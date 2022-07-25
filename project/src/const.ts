@@ -21,3 +21,10 @@ export const URL_MARKER_CURRENT =
   './img/pin-active.svg';
 
 export const MAP_CLASS_NAME = 'cities__map';
+
+export const FilterType = {
+  POPULAR: 'Popular',
+  LOW: 'Price: low to high',
+  HIGH: 'Price: high to low',
+  TOP: 'Top rated first',
+};
