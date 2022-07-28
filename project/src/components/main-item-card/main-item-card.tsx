@@ -6,10 +6,11 @@ import type { Card } from '../../types/types';
 type MainItemCardProps = {
   card: Card,
   handlerCardMouseOver?: (evt: MouseEvent<HTMLDivElement>) => void;
+  handlerCardMouseOut?: (evt: MouseEvent<HTMLDivElement>) => void;
   selectPath?: boolean,
 }
 
-function MainItemCard({ card, handlerCardMouseOver, selectPath }: MainItemCardProps): JSX.Element {
+function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectPath }: MainItemCardProps): JSX.Element {
   const { price, rating, images, title, type, cardId, location } = card;
   const { longitude, latitude } = location;
 
@@ -20,6 +21,7 @@ function MainItemCard({ card, handlerCardMouseOver, selectPath }: MainItemCardPr
       data-lng={`${longitude}`}
       data-title={`${title}`}
       onMouseOver={handlerCardMouseOver}
+      onMouseOut={handlerCardMouseOut}
     >
       <div className="cities__image-wrapper place-card__image-wrapper" >
         <Link to={`offer/${cardId}`} >

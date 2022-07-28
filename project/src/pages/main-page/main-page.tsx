@@ -5,7 +5,7 @@ import { EmptyMainPage } from '../../components/empty-main-page/empty-main-page'
 import type { CardsProps } from '../../types/types';
 import { MainSection } from '../../components/main-section/main-section';
 import { CitiesTabs } from '../../components/cities-tabs/cities-tabs';
-import { useAppSelector } from '../../hooks';
+import { useFilter } from '../../hooks';
 
 const VisibilityOptions = {
   isLogged: true,
@@ -13,9 +13,8 @@ const VisibilityOptions = {
 
 function MainPage({ cards }: CardsProps): JSX.Element {
   const { isLogged } = VisibilityOptions;
-  const currentCity = useAppSelector((state) => state.name);
 
-  const cardsOfCity = cards.filter((card) => card.city.name === currentCity);
+  const cardsOfCity = useFilter({ cards });
   const isEmpty = (cardsOfCity.length === 0);
 
   return (
