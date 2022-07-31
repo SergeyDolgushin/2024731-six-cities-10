@@ -1,11 +1,10 @@
-import { Comment } from '../../types/types';
 import { ReviewsItem } from '../rewiew-item/review-item';
+import { useAppSelector } from '../../hooks';
 
-type ReviewsListProps = {
-  comments: Comment[];
-}
 
-function ReviewsList({ comments }: ReviewsListProps) {
+function ReviewsList() {
+
+  const { comments } = useAppSelector((state) => state);
   const reviewsAmount = comments.length;
 
   const reviewsList: JSX.Element[] = comments.map((comment) => (

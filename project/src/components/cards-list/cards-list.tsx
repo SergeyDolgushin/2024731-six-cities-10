@@ -4,7 +4,9 @@ import { Map } from '../map/map';
 import { MAP_CLASS_NAME } from '../../const';
 
 import type { CardsProps, Point } from '../../types/types';
+import { useAppSelector } from '../../hooks';
 import { MouseEvent, useEffect, useState } from 'react';
+import { LoadingScreen } from '../../pages/loading-screen/loading-screen';
 
 const point = (currentCardId: DOMStringMap | null) => {
   if (currentCardId) {
@@ -18,6 +20,7 @@ const point = (currentCardId: DOMStringMap | null) => {
 };
 
 function CardsList({ cards }: CardsProps): JSX.Element {
+  const { isDataLoaded } = useAppSelector((state) => state);
   const [currentCardId, setCardId] = useState<DOMStringMap | null>(null);
   const [currentCard, setCard] = useState<Point | undefined>(undefined);
 
@@ -34,7 +37,7 @@ function CardsList({ cards }: CardsProps): JSX.Element {
   const cardsView: JSX.Element[] = cards.map((item) => (
     <MainItemCard
       card={item}
-      key={item.cardId}
+      key={item.id}
       handlerCardMouseOver={handlerCardMouseOver}
       handlerCardMouseOut={handlerCardMouseOut}
     />
@@ -52,6 +55,12 @@ function CardsList({ cards }: CardsProps): JSX.Element {
   useEffect(() => {
     setCard(point(currentCardId));
   }, [currentCardId]);
+
+  if (isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <div className="cities" id={`${currentCardId}`}>

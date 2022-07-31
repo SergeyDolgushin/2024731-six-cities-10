@@ -38,7 +38,6 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.lat,
@@ -47,7 +46,7 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && point.title === selectedPoint.title
+            (selectedPoint !== undefined && point.lat === selectedPoint.lat && point.lng === selectedPoint.lng)
               ? currentCustomIcon
               : defaultCustomIcon
           )

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { MouseEvent } from 'react';
 
 import type { Card } from '../../types/types';
+import { convertRatingtoStar } from '../../utils/converter';
 
 type MainItemCardProps = {
   card: Card,
@@ -11,7 +12,7 @@ type MainItemCardProps = {
 }
 
 function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectPath }: MainItemCardProps): JSX.Element {
-  const { price, rating, images, title, type, cardId, location } = card;
+  const { price, rating, images, title, type, id, location } = card;
   const { longitude, latitude } = location;
 
   return (
@@ -24,7 +25,7 @@ function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectP
       onMouseOut={handlerCardMouseOut}
     >
       <div className="cities__image-wrapper place-card__image-wrapper" >
-        <Link to={`offer/${cardId}`} >
+        <Link to={`offer/${id}`} >
           <img className="place-card__image" src={images[0]} width="260" height="200" alt={title} />
         </Link>
       </div>
@@ -43,12 +44,12 @@ function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectP
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ 'width': `${rating}%` }}></span>
+            <span style={{ 'width': `${convertRatingtoStar(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`offer/${cardId}`} >{title}</Link>
+          <Link to={`offer/${id}`} >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

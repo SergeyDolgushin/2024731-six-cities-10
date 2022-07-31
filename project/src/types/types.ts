@@ -3,7 +3,7 @@ type Card = {
   rating: number,
   images: string[],
   title: string,
-  cardId: number,
+  id: number,
   isFavorite: boolean
   isPremium: boolean,
   type: string,
@@ -64,4 +64,16 @@ type Comment = {
   user: Host;
 };
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, Point, Points, City, Comment, };
+type AuthData = {
+  email: string;
+  password: string;
+};
+
+type UserData = {
+  id: number;
+  email: string;
+  token: string;
+  avatarUrl: string;
+};
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, Point, Points, City, Comment, AuthData, UserData };

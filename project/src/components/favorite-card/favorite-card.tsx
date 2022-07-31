@@ -1,4 +1,5 @@
 import type { CardProps } from '../../types/types';
+import { convertRatingtoStar } from '../../utils/converter';
 
 
 function FavoriteCard({ card }: CardProps): JSX.Element {
@@ -8,7 +9,7 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="/#">
-          <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="150" height="110" alt={`${title}`} />
         </a>
       </div>
       <div className="favorites__card-info place-card__info">
@@ -26,7 +27,7 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ 'width': `${rating}%` }}></span>
+            <span style={{ 'width': `${convertRatingtoStar(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
