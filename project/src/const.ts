@@ -17,6 +17,7 @@ export enum APIRoute {
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+  Favorites = '/favorite',
 }
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];

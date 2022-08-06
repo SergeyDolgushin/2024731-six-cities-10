@@ -1,4 +1,8 @@
+import { MouseEvent } from 'react';
+
 import { ReviewSection } from '../../components/review-section/review-section';
+import { useAppDispatch } from '../../hooks';
+import { fetchOffersAction, setStatus } from '../../store/api-actions';
 import { Card } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
 import { PropertyFeatures } from '../property-features/property-features';
@@ -10,7 +14,15 @@ type cardProps = {
 };
 
 function PropertiesDescriptions({ card }: cardProps) {
-  const { isPremium, rating, goods, title, price, type, maxAdults, bedrooms } = card;
+  const { isPremium, rating, goods, title, price, type, maxAdults, bedrooms, id, isFavorite } = card;
+
+  const dispatch = useAppDispatch();
+
+  const handleOnChangeStatus = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    dispatch(setStatus({ id, isFavorite }));
+    dispatch(fetchOffersAction());
+  };
 
   return (
     <div className="property__container container">
@@ -22,7 +34,11 @@ function PropertiesDescriptions({ card }: cardProps) {
           <h1 className="property__name">
             {title}
           </h1>
-          <button className="property__bookmark-button button" type="button">
+          <button
+            className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active' : ''}`}
+            onClick={handleOnChangeStatus}
+            type="button"
+          >
             <svg className="property__bookmark-icon" width="31" height="33">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

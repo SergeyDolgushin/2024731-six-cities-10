@@ -7,6 +7,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null as Error,
   isDataLoaded: true,
+  userComment: '',
   offers: [
     {
       price: 0,

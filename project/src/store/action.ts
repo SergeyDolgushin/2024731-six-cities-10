@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Card, Comment } from '../types/types';
-import { Name, Filter } from './types';
+import { Name, Filter, Error } from './types';
 import { AuthorizationStatus } from '../const';
 
 const changeCity = createAction<{ name: Name }>('main/changeCity');
@@ -11,7 +11,7 @@ const loadOffersNearby = createAction<Card[]>('data/loadOffersNearby');
 const loadComments = createAction<Comment[]>('data/loadComments');
 const loadOffer = createAction<Card>('data/loadOffer');
 const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
-const setError = createAction<string | null>('game/setError');
+const setError = createAction<Error>('game/setError');
 const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 
 export { changeCity, getOffers, getFilter, loadOffers, requireAuthorization, setError, setDataLoadedStatus, loadOffer, loadOffersNearby, loadComments };

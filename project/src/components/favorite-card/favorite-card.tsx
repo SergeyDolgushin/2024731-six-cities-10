@@ -1,9 +1,20 @@
+import { MouseEvent } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { fetchOffersAction, setStatus } from '../../store/api-actions';
 import type { CardProps } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
 
 
 function FavoriteCard({ card }: CardProps): JSX.Element {
-  const { price, rating, title, previewImage, type } = card;
+  const { price, rating, title, previewImage, type, id, isFavorite } = card;
+
+  const dispatch = useAppDispatch();
+
+  const handleOnChangeStatus = (evt: MouseEvent) => {
+    evt.preventDefault();
+    dispatch(setStatus({ id, isFavorite }));
+    dispatch(fetchOffersAction());
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -18,7 +29,11 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+          <button
+            className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+            onClick={handleOnChangeStatus}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

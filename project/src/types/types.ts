@@ -76,4 +76,15 @@ type UserData = {
   avatarUrl: string;
 };
 
-export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, Point, Points, City, Comment, AuthData, UserData };
+type UserComment = {
+  comment: string;
+  rating: number;
+  selectedCard: string | undefined;
+}
+
+type UserBookmark = {
+  isFavorite: boolean;
+  id: number;
+}
+
+export type { CardProps, CardsProps, CardsSectionMainPageProps, Card, Point, Points, City, Comment, AuthData, UserData, UserComment, UserBookmark };

@@ -31,7 +31,7 @@ const saveToken = (token: Token, email: string, userImg: string, userId: string)
   localStorage.setItem(AUTH_TOKEN_KEY_NAME, token);
   localStorage.setItem(AUTH_EMAIL_KEY_NAME, email);
   localStorage.setItem(USER_IMG_KEY_NAME, userImg);
-  localStorage.setItem(USER_IMG_KEY_NAME, userId);
+  localStorage.setItem(USER_ID_KEY_NAME, userId);
 };
 
 const dropToken = (): void => {

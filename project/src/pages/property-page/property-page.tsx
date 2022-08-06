@@ -11,19 +11,20 @@ import { PropertiesDescriptions } from '../../components/properties-descriptions
 import { fetchOfferAction, fetchOffersNearbyAction, fetchCommentsAction } from '../../store/api-actions';
 import { store } from '../../store';
 
-import type { Point } from '../../types/types';
+import type { Card, Point } from '../../types/types';
 import { useAppSelector } from '../../hooks';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 
 const MAP_CLASS_NAME = 'property__map';
 
+const makeOffersNearby = (isExist: number, offers: Card[]) => (
+  isExist ? offers.map((item) => <MainItemCard card={item} key={item.id} selectPath />) : null
+);
 
 function PropertyPage(): JSX.Element {
   const { offer, offersNearby, isDataLoaded, error } = useAppSelector((state) => state);
   const { selectedCard } = useParams<string>();
   const [localError, setLocalError] = useState<boolean>(false);
-
-  let cardsView: JSX.Element[] = [];
 
   useEffect(() => {
     store.dispatch(fetchOfferAction(String(selectedCard)));
@@ -37,9 +38,6 @@ function PropertyPage(): JSX.Element {
     }
   }, [error, setLocalError]);
 
-  if (offersNearby.length) {
-    cardsView = offersNearby.map((item) => <MainItemCard card={item} key={item.id} selectPath />);
-  }
   const points = offersNearby.map((item) => {
     const container: Point = {
       lat: item.location.latitude,
@@ -83,7 +81,7 @@ function PropertyPage(): JSX.Element {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {cardsView}
+                {makeOffersNearby(offersNearby.length, offersNearby)}
               </div>
             </section>
           </div>

@@ -4,7 +4,7 @@ import { AppDispatch, State } from '../types/state.js';
 import { loadOffers, requireAuthorization, setError, setDataLoadedStatus, loadOffer, loadOffersNearby, loadComments } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { AuthData, UserData, Card, Comment } from '../types/types';
+import { AuthData, UserData, Card, Comment, UserComment, UserBookmark } from '../types/types';
 import { store } from './';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -112,5 +112,33 @@ export const clearErrorAction = createAsyncThunk(
       () => store.dispatch(setError(null)),
       TIMEOUT_SHOW_ERROR,
     );
+  },
+);
+
+export const sendComment = createAsyncThunk<void, UserComment, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/login',
+  async ({ selectedCard, comment, rating }, { dispatch, extra: api }) => {
+    const { data } = await api.post<Comment[]>(`${APIRoute.Comments}/${selectedCard}`, { comment, rating });
+    dispatch(setDataLoadedStatus(true));
+    dispatch(loadComments(data));
+    dispatch(setDataLoadedStatus(false));
+  },
+);
+
+export const setStatus = createAsyncThunk<void, UserBookmark, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'offer/status',
+  async ({ isFavorite, id }, { dispatch, extra: api }) => {
+    const { data } = await api.post<Card>(`${APIRoute.Favorites}/${id}/${Number(!isFavorite)}`);
+    dispatch(setDataLoadedStatus(true));
+    dispatch(loadOffer(data));
+    dispatch(setDataLoadedStatus(false));
   },
 );
