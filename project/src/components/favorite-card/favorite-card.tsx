@@ -11,7 +11,6 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleOnChangeStatus = (evt: MouseEvent) => {
-    evt.preventDefault();
     dispatch(setStatus({ id, isFavorite }));
     dispatch(fetchOffersAction());
   };

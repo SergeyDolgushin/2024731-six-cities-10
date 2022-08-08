@@ -11,15 +11,11 @@ import { PropertiesDescriptions } from '../../components/properties-descriptions
 import { fetchOfferAction, fetchOffersNearbyAction, fetchCommentsAction } from '../../store/api-actions';
 import { store } from '../../store';
 
-import type { Card, Point } from '../../types/types';
+import type { Point } from '../../types/types';
 import { useAppSelector } from '../../hooks';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 
 const MAP_CLASS_NAME = 'property__map';
-
-const makeOffersNearby = (isExist: number, offers: Card[]) => (
-  isExist ? offers.map((item) => <MainItemCard card={item} key={item.id} selectPath />) : null
-);
 
 function PropertyPage(): JSX.Element {
   const { offer, offersNearby, isDataLoaded, error } = useAppSelector((state) => state);
@@ -81,7 +77,7 @@ function PropertyPage(): JSX.Element {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {makeOffersNearby(offersNearby.length, offersNearby)}
+                {offersNearby.map((item) => <MainItemCard card={item} key={item.id} selectPath />)}
               </div>
             </section>
           </div>

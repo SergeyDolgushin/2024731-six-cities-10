@@ -5,6 +5,7 @@ import type { Card } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
 import { useAppDispatch } from '../../hooks';
 import { setStatus, fetchOffersAction } from '../../store/api-actions';
+import { AppRoute } from '../../const';
 
 type MainItemCardProps = {
   card: Card,
@@ -20,7 +21,6 @@ function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectP
   const dispatch = useAppDispatch();
 
   const handleOnChangeStatus = (evt: MouseEvent) => {
-    evt.preventDefault();
     dispatch(setStatus({ id, isFavorite }));
     dispatch(fetchOffersAction());
   };
@@ -35,7 +35,7 @@ function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectP
       onMouseOut={handlerCardMouseOut}
     >
       <div className="cities__image-wrapper place-card__image-wrapper" >
-        <Link to={generatePath('offer/:id', { id: String(id) })} >
+        <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >
           <img className="place-card__image" src={images[0]} width="260" height="200" alt={title} />
         </Link>
       </div>
@@ -63,7 +63,7 @@ function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectP
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={generatePath('offer/:id', { id: String(id) })} >{title}</Link>
+          <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
