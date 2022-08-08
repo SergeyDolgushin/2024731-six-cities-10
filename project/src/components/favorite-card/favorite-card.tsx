@@ -1,14 +1,25 @@
+import { MouseEvent } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { fetchOffersAction, setStatus } from '../../store/api-actions';
 import type { CardProps } from '../../types/types';
+import { convertRatingtoStar } from '../../utils/converter';
 
 
 function FavoriteCard({ card }: CardProps): JSX.Element {
-  const { price, rating, title, previewImage, type } = card;
+  const { price, rating, title, previewImage, type, id, isFavorite } = card;
+
+  const dispatch = useAppDispatch();
+
+  const handleOnChangeStatus = (evt: MouseEvent) => {
+    dispatch(setStatus({ id, isFavorite }));
+    dispatch(fetchOffersAction());
+  };
 
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="/#">
-          <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="150" height="110" alt={`${title}`} />
         </a>
       </div>
       <div className="favorites__card-info place-card__info">
@@ -17,7 +28,11 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+          <button
+            className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+            onClick={handleOnChangeStatus}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -26,7 +41,7 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ 'width': `${rating}%` }}></span>
+            <span style={{ 'width': `${convertRatingtoStar(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

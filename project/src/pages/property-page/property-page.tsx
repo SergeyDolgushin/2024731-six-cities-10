@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { CommonHeader } from '../../components/common-header/common-header';
 import { PageNotFound } from '../../components/page-not-found/page-not-found';
@@ -7,22 +8,33 @@ import { Map } from '../../components/map/map';
 import PropertiesGallery from '../../components/properties-gallery/properties-gallery';
 import { PropertiesDescriptions } from '../../components/properties-descriptions/properties-descriptions';
 
-import type { CardsProps, Point } from '../../types/types';
+import { fetchOfferAction, fetchOffersNearbyAction, fetchCommentsAction } from '../../store/api-actions';
+import { store } from '../../store';
+
+import type { Point } from '../../types/types';
+import { useAppSelector } from '../../hooks';
+import { LoadingScreen } from '../loading-screen/loading-screen';
 
 const MAP_CLASS_NAME = 'property__map';
 
-const HeaderOptions = {
-  isLogged: false,
-};
-
-function PropertyPage({ cards }: CardsProps): JSX.Element {
+function PropertyPage(): JSX.Element {
+  const { offer, offersNearby, isDataLoaded, error } = useAppSelector((state) => state);
   const { selectedCard } = useParams<string>();
-  const cardId = Number(selectedCard);
+  const [localError, setLocalError] = useState<boolean>(false);
 
-  const card = cards.filter((item) => item.cardId === cardId);
-  const cardsView: JSX.Element[] = cards.slice(0, 3).map((item) => <MainItemCard card={item} key={item.cardId} selectPath />);
+  useEffect(() => {
+    store.dispatch(fetchOfferAction(String(selectedCard)));
+    store.dispatch(fetchOffersNearbyAction(String(selectedCard)));
+    store.dispatch(fetchCommentsAction(String(selectedCard)));
+  }, [selectedCard]);
 
-  const points = cards.map((item) => {
+  useEffect(() => {
+    if (error !== null) {
+      setLocalError(true);
+    }
+  }, [error, setLocalError]);
+
+  const points = offersNearby.map((item) => {
     const container: Point = {
       lat: item.location.latitude,
       lng: item.location.longitude,
@@ -32,38 +44,40 @@ function PropertyPage({ cards }: CardsProps): JSX.Element {
     return container;
   });
 
-
-  const point = () => {
-    const { location, title } = card[0];
-    if (card) {
-      return {
-        lat: Number(location.latitude),
-        lng: Number(location.longitude),
-        title: String(title),
-      };
-    }
-    return undefined;
+  const point = (): Point => {
+    const { location, title } = offer;
+    return {
+      lat: Number(location.latitude),
+      lng: Number(location.longitude),
+      title: String(title),
+    };
   };
 
-  if (!card.length) {
+  points.push(point());
+
+  if (localError) {
     return <PageNotFound />;
   }
   else {
-    const { title, images } = card[0];
+    const { title, images } = offer;
     return (
       <div className="page">
-        <CommonHeader isLogged={HeaderOptions.isLogged} />
+        <CommonHeader />
         <main className="page__main page__main--property">
           <section className="property">
-            <PropertiesGallery images={images} title={title} />
-            <PropertiesDescriptions card={card} />
-            <Map className={MAP_CLASS_NAME} city={card[0].city} points={points} selectedPoint={point()} />
+            {isDataLoaded ?
+              <LoadingScreen /> :
+              <>
+                <PropertiesGallery images={images} title={title} />
+                <PropertiesDescriptions card={offer} />
+              </>}
+            <Map className={MAP_CLASS_NAME} city={offer.city} points={points} selectedPoint={point()} />
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {cardsView}
+                {offersNearby.map((item) => <MainItemCard card={item} key={item.id} selectPath />)}
               </div>
             </section>
           </div>

@@ -1,16 +1,28 @@
-import { useState, ChangeEvent, Fragment } from 'react';
+import { useState, ChangeEvent, Fragment, MouseEvent } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { sendComment } from '../../store/api-actions';
+
 
 const ratingStars: ReadonlyArray<number> = [5, 4, 3, 2, 1];
 
 function ReviewForm() {
   const [formData, setFormData] = useState({
-    review: '',
+    comment: '',
     rating: 0
   });
+  const dispatch = useAppDispatch();
+  const { selectedCard } = useParams<string>();
 
   const handleOnChangeField = (evt: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleOnSubmit = (evt: MouseEvent) => {
+    evt.preventDefault();
+    dispatch(sendComment({ selectedCard, ...formData }));
+    setFormData({ comment: '', rating: 0 });
   };
 
   const ratingInputs: JSX.Element[] = ratingStars.map((item) => (
@@ -39,16 +51,16 @@ function ReviewForm() {
       <textarea className="reviews__textarea form__textarea"
         onChange={handleOnChangeField}
         id="review"
-        name="review"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
+        value={formData.comment}
       >
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={false}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={false} onClick={handleOnSubmit}>Submit</button>
       </div>
     </form>
   );

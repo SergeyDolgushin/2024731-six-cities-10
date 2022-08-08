@@ -1,13 +1,15 @@
 import { ReviewForm } from '../review-form/review-form';
 import { ReviewsList } from '../reviews-list/reviews-list';
-import { comments } from '../../mock/mock';
+import { useAppSelector } from '../../hooks';
+import { AuthorizationStatus } from '../../const';
 
 function ReviewSection() {
+  const { authorizationStatus } = useAppSelector((state) => state);
 
   return (
     <section className="property__reviews reviews">
-      <ReviewsList comments={comments} />
-      <ReviewForm />
+      <ReviewsList />
+      {(authorizationStatus === AuthorizationStatus.Auth) ? <ReviewForm /> : null}
     </section>
   );
 }

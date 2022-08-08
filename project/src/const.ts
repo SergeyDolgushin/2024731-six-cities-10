@@ -12,6 +12,14 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+  Favorites = '/favorite',
+}
+
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const URL_MARKER_DEFAULT =
@@ -28,3 +36,5 @@ export const FilterType = {
   HIGH: 'Price: high to low',
   TOP: 'Top rated first',
 };
+
+export const TIMEOUT_SHOW_ERROR = 2000;

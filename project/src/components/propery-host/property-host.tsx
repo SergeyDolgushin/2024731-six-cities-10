@@ -1,11 +1,11 @@
 import { Card } from '../../types/types';
 
 type PropertyHostProps = {
-  card: Card[];
+  card: Card;
 };
 
 function PropertyHost({ card }: PropertyHostProps) {
-  const { description, host } = card[0];
+  const { description, host } = card;
   const { name, isPro, avatarUrl } = host;
 
   return (

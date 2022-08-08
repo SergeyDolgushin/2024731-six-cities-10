@@ -3,11 +3,6 @@ import { FavoritesCities } from '../../components/favorites-cities/favorites-cit
 
 import type { CardsProps } from '../../types/types';
 
-const HeaderOptions = {
-  isLogged: true
-};
-
-
 function FavoritesPage({ cards }: CardsProps): JSX.Element {
   const cities = cards.map((item) => item.isFavorite ? item.city.name : null);
   const currentCities = new Set(cities);
@@ -21,7 +16,7 @@ function FavoritesPage({ cards }: CardsProps): JSX.Element {
 
   return (
     <div className="page">
-      <CommonHeader isLogged={HeaderOptions.isLogged} />
+      <CommonHeader />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">

@@ -1,4 +1,5 @@
 import { Comment } from '../../types/types';
+import { convertRatingtoStar } from '../../utils/converter';
 
 type ReviewsItemProps = {
   review: Comment;
@@ -8,7 +9,6 @@ const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June', 'Jule', 'August', 'September', 'October', 'November', 'December',
 ];
 
-const MULTIPLIER = 20;
 
 function ReviewsItem({ review }: ReviewsItemProps) {
   const { rating, comment, date, user: { avatarUrl, name } } = review;
@@ -32,7 +32,7 @@ function ReviewsItem({ review }: ReviewsItemProps) {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: `${Math.floor(rating * MULTIPLIER)}%` }}></span>
+            <span style={{ width: `${convertRatingtoStar(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
