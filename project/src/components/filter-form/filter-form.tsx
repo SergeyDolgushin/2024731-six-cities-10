@@ -1,14 +1,15 @@
 import { useState, FormEvent } from 'react';
 import { FilterType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFilter } from '../../store/action';
+import { filterProcess } from '../../store/filter-process/filter-process';
+import { getFilter } from '../../store/filter-process/selectors';
 
 const setActiveFilter = (activeFilter: string, filterType: string) => (activeFilter === filterType) ? 'places__option--active' : '';
 
 
 function FormFilter(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
-  const currentFilter = useAppSelector((state) => state.filter);
+  const currentFilter = useAppSelector(getFilter);
   const dispatch = useAppDispatch();
   const handleOpenMenu = () => {
     setOpen(!isOpen);
@@ -16,7 +17,7 @@ function FormFilter(): JSX.Element {
 
   const handleSetFilter = (evt: FormEvent<HTMLElement>) => {
     const name = evt.target as HTMLElement;
-    dispatch(getFilter({ filter: name.outerText }));
+    dispatch(filterProcess.actions.getFilter({ filter: name.outerText }));
   };
 
   return (

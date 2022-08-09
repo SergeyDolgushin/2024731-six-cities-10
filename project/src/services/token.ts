@@ -38,6 +38,7 @@ const dropToken = (): void => {
   localStorage.removeItem(AUTH_TOKEN_KEY_NAME);
   localStorage.removeItem(AUTH_EMAIL_KEY_NAME);
   localStorage.removeItem(USER_IMG_KEY_NAME);
+  localStorage.removeItem(USER_ID_KEY_NAME);
 };
 
 export { getToken, saveToken, dropToken, getUserInfo };

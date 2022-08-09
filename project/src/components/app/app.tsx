@@ -7,10 +7,13 @@ import { LoginScreen } from '../../pages/login-screen/login-screen';
 import { PageNotFound } from '../page-not-found/page-not-found';
 import { PrivateRoute } from '../private-route/private-route';
 
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getOffers } from '../../store/data-process/selectors';
 
 function App(): JSX.Element {
-  const { offers } = useAppSelector((state) => state);
+  const offers = useAppSelector(getOffers);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <Router>
@@ -21,7 +24,7 @@ function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={authorizationStatus}
             >
               <FavoritesPage cards={offers} />
             </PrivateRoute>

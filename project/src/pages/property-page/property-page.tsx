@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { CommonHeader } from '../../components/common-header/common-header';
 import { PageNotFound } from '../../components/page-not-found/page-not-found';
@@ -14,25 +14,23 @@ import { store } from '../../store';
 import type { Point } from '../../types/types';
 import { useAppSelector } from '../../hooks';
 import { LoadingScreen } from '../loading-screen/loading-screen';
+import { getOffersNearby, getOffer } from '../../store/data-process/selectors';
 
 const MAP_CLASS_NAME = 'property__map';
 
+
 function PropertyPage(): JSX.Element {
-  const { offer, offersNearby, isDataLoaded, error } = useAppSelector((state) => state);
+  const { isDataLoaded, isError } = useAppSelector((state) => state.DATA);
+  const offer = useAppSelector(getOffer);
+  const offersNearby = useAppSelector(getOffersNearby);
+
   const { selectedCard } = useParams<string>();
-  const [localError, setLocalError] = useState<boolean>(false);
 
   useEffect(() => {
     store.dispatch(fetchOfferAction(String(selectedCard)));
     store.dispatch(fetchOffersNearbyAction(String(selectedCard)));
     store.dispatch(fetchCommentsAction(String(selectedCard)));
   }, [selectedCard]);
-
-  useEffect(() => {
-    if (error !== null) {
-      setLocalError(true);
-    }
-  }, [error, setLocalError]);
 
   const points = offersNearby.map((item) => {
     const container: Point = {
@@ -55,7 +53,8 @@ function PropertyPage(): JSX.Element {
 
   points.push(point());
 
-  if (localError) {
+
+  if (isError) {
     return <PageNotFound />;
   }
   else {

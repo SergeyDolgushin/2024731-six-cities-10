@@ -22,4 +22,5 @@ const getFilteredCards = (currentFilter: string, { cards }: CardsProps) => {
   return cards;
 };
 
+
 export { getFilteredCards };

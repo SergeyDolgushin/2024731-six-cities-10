@@ -6,8 +6,8 @@ import { getFilteredCards } from '../utils/filters';
 
 function useFilter(cards: Card[]) {
   const [currentCards, setCards] = useState([...cards]);
-  const filter = useAppSelector((state) => state.filter);
-  const currentCity = useAppSelector((state) => state.name);
+  const filter = useAppSelector((state) => state.FILTER.filter);
+  const currentCity = useAppSelector((state) => state.FILTER.name);
 
   useEffect(() => {
     setCards([...cards]);
