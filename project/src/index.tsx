@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -18,7 +19,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Provider store={store}>
-    <ToastContainer />
-    <App />
+    <Router>
+      <ToastContainer />
+      <App />
+    </Router>
   </Provider>
 );

@@ -3,10 +3,6 @@ import { NameSpace, AuthorizationStatus } from '../../const';
 import { initialState } from '../const';
 import { checkAuthAction, loginAction, logoutAction } from '../api-actions';
 
-// const initialState: UserProcess = {
-//   authorizationStatus: AuthorizationStatus.Unknown,
-// };
-
 export const userProcess = createSlice({
   name: NameSpace.User,
   initialState: initialState[NameSpace.User],

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { MainPage } from '../../pages/main-page/main-page';
 import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
@@ -16,24 +16,22 @@ function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
-    <Router>
-      <Routes>
-        <Route path={AppRoute.Root} element={<MainPage />} />
-        <Route path={AppRoute.Offer} element={<PropertyPage />} />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute
-              authorizationStatus={authorizationStatus}
-            >
-              <FavoritesPage cards={offers} />
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Login} element={<LoginScreen />} />
-        <Route path={AppRoute.PageNotFound} element={<PageNotFound />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path={AppRoute.Root} element={<MainPage />} />
+      <Route path={AppRoute.Offer} element={<PropertyPage />} />
+      <Route
+        path={AppRoute.Favorites}
+        element={
+          <PrivateRoute
+            authorizationStatus={authorizationStatus}
+          >
+            <FavoritesPage cards={offers} />
+          </PrivateRoute>
+        }
+      />
+      <Route path={AppRoute.Login} element={<LoginScreen />} />
+      <Route path={AppRoute.PageNotFound} element={<PageNotFound />} />
+    </Routes>
   );
 }
 

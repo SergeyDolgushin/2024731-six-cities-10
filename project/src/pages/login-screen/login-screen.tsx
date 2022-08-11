@@ -1,20 +1,28 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import { loginAction } from '../../store/api-actions';
 import { CommonHeader } from '../../components/common-header/common-header';
 import { filterProcess } from '../../store/filter-process/filter-process';
 
-import { AppRoute, CITIES } from '../../const';
+import { AppRoute, AuthorizationStatus, CITIES } from '../../const';
 import { AuthData } from '../../types/types';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 
 function LoginScreen(): JSX.Element {
   const { register, handleSubmit } = useForm<AuthData>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authStatus = useAppSelector(getAuthorizationStatus);
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Root);
+    }
+  }, [authStatus, navigate]);
 
   const randomCity = CITIES[Math.floor(Math.random() * CITIES.length)];
 
@@ -50,7 +58,7 @@ function LoginScreen(): JSX.Element {
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
                 <input
-                  {...register('password', { pattern: /\d(?=[A-Za-z])/i })}
+                  {...register('password', { pattern: /(?=.*[0-9])(?=.*[A-Za-z])[0-9a-zA-Z]{2,}/i })}
                   className="login__input form__input"
                   type="password"
                   name="password"
