@@ -1,10 +1,16 @@
 import { useState, ChangeEvent, Fragment, MouseEvent } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { sendComment } from '../../store/api-actions';
 
 
 const ratingStars: ReadonlyArray<number> = [5, 4, 3, 2, 1];
+
+const checkLength = (data: string, isLoaded: boolean, isRating: number) => {
+  const lengthData = data.length;
+  return !(lengthData >= 50 && lengthData <= 300 && isRating) && !isLoaded;
+
+};
 
 function ReviewForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +19,7 @@ function ReviewForm() {
   });
   const dispatch = useAppDispatch();
   const { selectedCard } = useParams<string>();
+  const { isDataLoaded } = useAppSelector((state) => state.DATA);
 
   const handleOnChangeField = (evt: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
@@ -60,7 +67,7 @@ function ReviewForm() {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={false} onClick={handleOnSubmit}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={checkLength(formData.comment, isDataLoaded, formData.rating)} onClick={handleOnSubmit}>Submit</button>
       </div>
     </form>
   );

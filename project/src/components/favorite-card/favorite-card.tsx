@@ -1,4 +1,6 @@
 import { MouseEvent } from 'react';
+import { generatePath, Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { fetchOffersAction, setStatus } from '../../store/api-actions';
 import type { CardProps } from '../../types/types';
@@ -18,9 +20,9 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="/#">
+        <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >
           <img className="place-card__image" src={previewImage} width="150" height="110" alt={`${title}`} />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -46,11 +48,11 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/#">{title}</a>
+          <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </article>
+    </article >
 
   );
 }

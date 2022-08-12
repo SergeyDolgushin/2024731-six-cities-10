@@ -1,13 +1,17 @@
 import { ReviewsItem } from '../rewiew-item/review-item';
 import { useAppSelector } from '../../hooks';
+import { getComments } from '../../store/data-process/selectors';
 
 
 function ReviewsList() {
 
-  const { comments } = useAppSelector((state) => state);
+  const comments = useAppSelector(getComments);
   const reviewsAmount = comments.length;
 
-  const reviewsList: JSX.Element[] = comments.map((comment) => (
+  const commentsArray = [...comments];
+  commentsArray.sort((commentA, commentB) => Date.parse(commentB.date) - Date.parse(commentA.date));
+
+  const reviewsList: JSX.Element[] = commentsArray.map((comment) => (
     <ReviewsItem review={comment} key={comment.id} />
   )
   );

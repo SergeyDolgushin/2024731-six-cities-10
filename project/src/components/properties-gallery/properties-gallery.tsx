@@ -7,7 +7,7 @@ type GalleryProps = {
 };
 
 function PropertiesGallery({ images, title }: GalleryProps) {
-  const { isDataLoaded } = useAppSelector((state) => state);
+  const { isDataLoaded } = useAppSelector((state) => state.DATA);
   const imagesContainer: JSX.Element[] = images.slice(0, 6).map((item) => (
     <div className="property__image-wrapper" key={item}>
       <img className="property__image" src={item} alt={title} />

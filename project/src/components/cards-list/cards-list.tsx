@@ -20,7 +20,7 @@ const point = (currentCardId: DOMStringMap | null) => {
 };
 
 function CardsList({ cards }: CardsProps): JSX.Element {
-  const { isDataLoaded } = useAppSelector((state) => state);
+  const { isDataLoaded } = useAppSelector((state) => state.DATA);
   const [currentCardId, setCardId] = useState<DOMStringMap | null>(null);
   const [currentCard, setCard] = useState<Point | undefined>(undefined);
 

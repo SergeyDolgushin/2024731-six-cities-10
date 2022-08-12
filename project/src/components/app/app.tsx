@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { MainPage } from '../../pages/main-page/main-page';
 import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
@@ -7,30 +7,31 @@ import { LoginScreen } from '../../pages/login-screen/login-screen';
 import { PageNotFound } from '../page-not-found/page-not-found';
 import { PrivateRoute } from '../private-route/private-route';
 
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getOffers } from '../../store/data-process/selectors';
 
 function App(): JSX.Element {
-  const { offers } = useAppSelector((state) => state);
+  const offers = useAppSelector(getOffers);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
-    <Router>
-      <Routes>
-        <Route path={AppRoute.Root} element={<MainPage />} />
-        <Route path={AppRoute.Offer} element={<PropertyPage />} />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
-              <FavoritesPage cards={offers} />
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Login} element={<LoginScreen />} />
-        <Route path={AppRoute.PageNotFound} element={<PageNotFound />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path={AppRoute.Root} element={<MainPage />} />
+      <Route path={AppRoute.Offer} element={<PropertyPage />} />
+      <Route
+        path={AppRoute.Favorites}
+        element={
+          <PrivateRoute
+            authorizationStatus={authorizationStatus}
+          >
+            <FavoritesPage cards={offers} />
+          </PrivateRoute>
+        }
+      />
+      <Route path={AppRoute.Login} element={<LoginScreen />} />
+      <Route path={AppRoute.PageNotFound} element={<PageNotFound />} />
+    </Routes>
   );
 }
 

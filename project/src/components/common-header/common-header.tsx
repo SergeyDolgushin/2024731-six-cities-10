@@ -4,12 +4,14 @@ import { useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { getUserInfo } from '../../services/token';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 import './common-header.css';
+import { getOffers } from '../../store/data-process/selectors';
 
 
 function CommonHeader(): JSX.Element {
-  const { authorizationStatus } = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <header className="header">
@@ -28,7 +30,7 @@ function CommonHeader(): JSX.Element {
 }
 
 function UserInfo(): JSX.Element {
-  const { offers } = useAppSelector((state) => state);
+  const offers = useAppSelector(getOffers);
   const { email, userImg } = getUserInfo();
 
   const favoriteHotels = offers.filter((card) => card.isFavorite).length;

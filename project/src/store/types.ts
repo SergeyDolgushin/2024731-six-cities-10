@@ -1,5 +1,11 @@
+import { AuthorizationStatus } from '../const';
+
 type Name = string;
 type Filter = string;
 type Error = string | null;
 
-export type { Name, Filter, Error };
+type UserProcess = {
+  authorizationStatus: AuthorizationStatus
+};
+
+export type { Name, Filter, Error, UserProcess };
