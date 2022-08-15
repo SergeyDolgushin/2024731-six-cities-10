@@ -6,9 +6,11 @@ type FavoritesCitiesProps = {
   city: string
 };
 
-function FavoritesCities({ cards, city }: FavoritesCitiesProps) {
+const makeCardsViews = ({ cards, city }: FavoritesCitiesProps) => (
+  cards.map((card) => (card.isFavorite && card.city.name === city) ? <FavoriteCard card={card} key={card.id} /> : null)
+);
 
-  const cardsView = cards.map((card) => (card.isFavorite && card.city.name === city) ? <FavoriteCard card={card} key={card.id} /> : null);
+function FavoritesCities({ cards, city }: FavoritesCitiesProps) {
 
   return (
     <li className="favorites__locations-items">
@@ -20,7 +22,7 @@ function FavoritesCities({ cards, city }: FavoritesCitiesProps) {
         </div>
       </div>
       <div className="favorites__places">
-        {cardsView}
+        {makeCardsViews({ cards, city })}
       </div>
     </li>
   );

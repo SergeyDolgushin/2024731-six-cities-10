@@ -93,7 +93,7 @@ export const sendComment = createAsyncThunk<Comment[], UserComment, {
   state: State,
   extra: AxiosInstance
 }>(
-  'user/login',
+  'send/comment',
   async ({ selectedCard, comment, rating }, { dispatch, extra: api }) => {
     const { data } = await api.post<Comment[]>(`${APIRoute.Comments}/${selectedCard}`, { comment, rating });
     return data;

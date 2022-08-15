@@ -1,4 +1,3 @@
-
 import { MouseEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { filterProcess } from '../../store/filter-process/filter-process';
@@ -32,4 +31,4 @@ function Tab({ name }: TabProps): JSX.Element {
   );
 }
 
-export default Tab;
+export { Tab };

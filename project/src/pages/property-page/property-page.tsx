@@ -5,7 +5,7 @@ import { CommonHeader } from '../../components/common-header/common-header';
 import { PageNotFound } from '../../components/page-not-found/page-not-found';
 import { MainItemCard } from '../../components/main-item-card/main-item-card';
 import { Map } from '../../components/map/map';
-import PropertiesGallery from '../../components/properties-gallery/properties-gallery';
+import { PropertiesGallery } from '../../components/properties-gallery/properties-gallery';
 import { PropertiesDescriptions } from '../../components/properties-descriptions/properties-descriptions';
 
 import { fetchOfferAction, fetchOffersNearbyAction, fetchCommentsAction } from '../../store/api-actions';
@@ -53,7 +53,6 @@ function PropertyPage(): JSX.Element {
 
   points.push(point());
 
-
   if (isError) {
     return <PageNotFound />;
   }
@@ -63,25 +62,27 @@ function PropertyPage(): JSX.Element {
       <div className="page">
         <CommonHeader />
         <main className="page__main page__main--property">
-          <section className="property">
-            {isDataLoaded ?
-              <LoadingScreen /> :
-              <>
+          {isDataLoaded ?
+            <div style={{ marginLeft: '43%' }}>
+              <LoadingScreen />
+            </div> :
+            <>
+              <section className="property">
                 <PropertiesGallery images={images} title={title} />
                 <PropertiesDescriptions card={offer} />
-              </>}
-            <Map className={MAP_CLASS_NAME} city={offer.city} points={points} selectedPoint={point()} />
-          </section>
-          <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                {offersNearby.map((item) => <MainItemCard card={item} key={item.id} selectPath />)}
+                <Map className={MAP_CLASS_NAME} city={offer.city} points={points} selectedPoint={point()} />
+              </section>
+              <div className="container">
+                <section className="near-places places">
+                  <h2 className="near-places__title">Other places in the neighbourhood</h2>
+                  <div className="near-places__list places__list">
+                    {offersNearby.map((item) => <MainItemCard card={item} key={item.id} />)}
+                  </div>
+                </section>
               </div>
-            </section>
-          </div>
+            </>}
         </main>
-      </div>
+      </div >
     );
   }
 }

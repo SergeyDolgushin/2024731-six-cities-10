@@ -3,12 +3,12 @@ import { FormFilter } from '../filter-form/filter-form';
 import { Map } from '../map/map';
 import { MAP_CLASS_NAME } from '../../const';
 
-import type { CardsProps, Point } from '../../types/types';
+import type { CardsProps, Point, Card } from '../../types/types';
 import { useAppSelector } from '../../hooks';
 import { MouseEvent, useEffect, useState } from 'react';
 import { LoadingScreen } from '../../pages/loading-screen/loading-screen';
 
-const point = (currentCardId: DOMStringMap | null) => {
+const makeCurrentPoint = (currentCardId: DOMStringMap | null) => {
   if (currentCardId) {
     return {
       lat: Number(currentCardId.lat),
@@ -18,6 +18,19 @@ const point = (currentCardId: DOMStringMap | null) => {
   }
   return undefined;
 };
+
+const makePointsContainer = (cards: Card[]) => (
+  cards.map((card) => {
+    const container: Point = {
+      lat: card.location.latitude,
+      lng: card.location.longitude,
+      title: card.title,
+    };
+
+    return container;
+  })
+);
+
 
 function CardsList({ cards }: CardsProps): JSX.Element {
   const { isDataLoaded } = useAppSelector((state) => state.DATA);
@@ -42,18 +55,9 @@ function CardsList({ cards }: CardsProps): JSX.Element {
       handlerCardMouseOut={handlerCardMouseOut}
     />
   ));
-  const points = cards.map((card) => {
-    const container: Point = {
-      lat: card.location.latitude,
-      lng: card.location.longitude,
-      title: card.title,
-    };
-
-    return container;
-  });
 
   useEffect(() => {
-    setCard(point(currentCardId));
+    setCard(makeCurrentPoint(currentCardId));
   }, [currentCardId]);
 
   if (isDataLoaded) {
@@ -74,7 +78,7 @@ function CardsList({ cards }: CardsProps): JSX.Element {
           </div>
         </section>
         <div className="cities__right-section">
-          <Map className={MAP_CLASS_NAME} city={cards[0].city} points={points} selectedPoint={currentCard} />
+          <Map className={MAP_CLASS_NAME} city={cards[0].city} points={makePointsContainer(cards)} selectedPoint={currentCard} />
         </div>
       </div>
     </div>

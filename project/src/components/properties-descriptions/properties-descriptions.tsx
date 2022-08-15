@@ -6,8 +6,8 @@ import { fetchOffersAction, setStatus } from '../../store/api-actions';
 import { Card } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
 import { PropertyFeatures } from '../property-features/property-features';
-import PropertyGoods from '../property-goods/property-goods';
-import PropertyHost from '../propery-host/property-host';
+import { PropertyGoods } from '../property-goods/property-goods';
+import { PropertyHost } from '../propery-host/property-host';
 
 type cardProps = {
   card: Card;

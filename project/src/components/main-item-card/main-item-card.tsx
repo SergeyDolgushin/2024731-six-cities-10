@@ -11,10 +11,9 @@ type MainItemCardProps = {
   card: Card,
   handlerCardMouseOver?: (evt: MouseEvent<HTMLDivElement>) => void;
   handlerCardMouseOut?: (evt: MouseEvent<HTMLDivElement>) => void;
-  selectPath?: boolean,
 }
 
-function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut, selectPath }: MainItemCardProps): JSX.Element {
+function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut }: MainItemCardProps): JSX.Element {
   const { price, rating, images, title, type, id, location, isFavorite } = card;
   const { longitude, latitude } = location;
 

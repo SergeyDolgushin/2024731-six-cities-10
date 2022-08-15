@@ -122,3 +122,20 @@ export const makeFakeOffers = (): Card[] => (
   new Array(4).fill(null).map(() => (
     makeFakeOffer()))
 );
+
+
+export const mockComments = [
+  {
+    comment: 'userComment',
+    rating: 1,
+    id: 1,
+    date: 'Sun Aug 14 2022 20:29:45 GMT+0300 (Москва, стандартное время)',
+    user:
+    {
+      id: 1,
+      name: 'TestName',
+      isPro: true,
+      avatarUrl: 'testPath'
+    }
+  }
+];
