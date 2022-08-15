@@ -31,4 +31,4 @@ function PropertyHost({ card }: PropertyHostProps) {
   );
 }
 
-export default PropertyHost;
+export { PropertyHost };

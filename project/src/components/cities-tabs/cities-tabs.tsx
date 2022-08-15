@@ -1,4 +1,4 @@
-import Tab from '../tab/tab';
+import { Tab } from '../tab/tab';
 import { CITIES } from '../../const';
 
 function makeTabs(): JSX.Element[] {

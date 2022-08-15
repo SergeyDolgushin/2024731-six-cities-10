@@ -19,4 +19,4 @@ function PropertyGoods({ goods }: PropertyGoodsProps) {
   );
 }
 
-export default PropertyGoods;
+export { PropertyGoods };

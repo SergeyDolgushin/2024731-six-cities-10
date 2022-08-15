@@ -9,15 +9,14 @@ const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June', 'Jule', 'August', 'September', 'October', 'November', 'December',
 ];
 
+const formatDate = (dateString: string) => {
+  const dateObject = new Date(dateString);
+
+  return `${MONTHS[dateObject.getMonth()]} ${dateObject.getFullYear()}`;
+};
 
 function ReviewsItem({ review }: ReviewsItemProps) {
   const { rating, comment, date, user: { avatarUrl, name } } = review;
-
-  const formatDate = (dateString: string) => {
-    const dateObject = new Date(dateString);
-
-    return `${MONTHS[dateObject.getMonth()]} ${dateObject.getFullYear()}`;
-  };
 
   return (
     <li className="reviews__item">

@@ -12,6 +12,7 @@ import { getOffers } from '../../store/data-process/selectors';
 
 function MainPage(): JSX.Element {
   const { isDataLoaded } = useAppSelector((state) => state.DATA);
+  const { name } = useAppSelector((state) => state.FILTER);
   const offers = useAppSelector(getOffers);
 
   const cardsOfCity = useFilter(offers);
@@ -22,7 +23,7 @@ function MainPage(): JSX.Element {
       <CommonHeader />
       <MainSection isEmpty={isEmpty}>
         <CitiesTabs />
-        {isEmpty ? <EmptyMainPage /> : <CardsList cards={cardsOfCity} />}
+        {isEmpty ? <EmptyMainPage currentCity={name} /> : <CardsList cards={cardsOfCity} />}
       </MainSection>
     </div>
   );

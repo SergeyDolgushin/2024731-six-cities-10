@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
@@ -13,7 +14,9 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 
 function LoginScreen(): JSX.Element {
-  const { register, handleSubmit } = useForm<AuthData>();
+  const { register, handleSubmit, formState: { errors } } = useForm<AuthData>({
+    criteriaMode: 'all'
+  });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const authStatus = useAppSelector(getAuthorizationStatus);
@@ -58,12 +61,30 @@ function LoginScreen(): JSX.Element {
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
                 <input
-                  {...register('password', { pattern: /(?=.*[0-9])(?=.*[A-Za-z])[0-9a-zA-Z]{2,}/i })}
+                  {...register('password',
+                    {
+                      required: 'This input is required.',
+                      pattern: {
+                        value: /(?=.*[0-9])(?=.*[A-Za-z])[0-9a-zA-Z]{2,}/i,
+                        message: 'Пароль должен содержать, как минимум, 1 цифру и 1 букву'
+                      },
+
+                    })
+                  }
                   className="login__input form__input"
                   type="password"
                   name="password"
                   placeholder="Password"
                   required
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="password"
+                  render={({ messages }) => messages
+                    ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type}>{message}</p>
+                    ))
+                    : null}
                 />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
