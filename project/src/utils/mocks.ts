@@ -7,7 +7,7 @@ export const makeFakeOffer = (): Card => ({
   images: [
     image.abstract()
   ],
-  title: lorem.text(),
+  title: lorem.word(),
   id: datatype.number(500),
   isFavorite: false,
   isPremium: false,
@@ -87,7 +87,7 @@ export const makeFakeOfferforMainCardItem = (): Card => ({
   ],
   title: 'test for MainCardItem',
   id: 1,
-  isFavorite: false,
+  isFavorite: true,
   isPremium: false,
   type: 'type',
   previewImage: image.abstract(),
@@ -121,6 +121,11 @@ export const makeFakeOfferforMainCardItem = (): Card => ({
 export const makeFakeOffers = (): Card[] => (
   new Array(4).fill(null).map(() => (
     makeFakeOffer()))
+);
+
+export const makeFakeOffersForFavorites = (): Card[] => (
+  new Array(4).fill(null).map(() => (
+    makeFakeOfferforMainCardItem()))
 );
 
 

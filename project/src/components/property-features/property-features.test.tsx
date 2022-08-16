@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { PropertyFeatures } from './property-features';
+import PropertyFeatures from './property-features';
 
 
 describe('Component: PropertyFeatures', () => {

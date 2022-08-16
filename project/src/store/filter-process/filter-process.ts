@@ -15,3 +15,5 @@ export const filterProcess = createSlice({
     },
   },
 });
+
+export const { getFilter, getCity } = filterProcess.actions;

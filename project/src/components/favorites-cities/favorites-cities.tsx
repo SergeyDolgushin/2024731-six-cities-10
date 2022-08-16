@@ -1,4 +1,4 @@
-import FavoriteCard from '../../components/favorite-card/favorite-card';
+import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import type { Card } from '../../types/types';
 
 type FavoritesCitiesProps = {

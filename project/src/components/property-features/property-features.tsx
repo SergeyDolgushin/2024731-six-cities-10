@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type PropertyFeaturesProps = {
   type: string,
   bedrooms: number,
@@ -21,4 +23,7 @@ function PropertyFeatures({ type, adults, bedrooms }: PropertyFeaturesProps) {
   );
 }
 
-export { PropertyFeatures };
+
+export default memo(PropertyFeatures, (prevProps, nextProps) => (
+  prevProps.type === nextProps.type && prevProps.adults === nextProps.adults && prevProps.bedrooms === nextProps.bedrooms
+));
