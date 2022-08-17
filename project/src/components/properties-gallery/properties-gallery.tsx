@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useAppSelector } from '../../hooks';
 import { LoadingScreen } from '../../pages/loading-screen/loading-screen';
 
@@ -32,4 +33,4 @@ function PropertiesGallery({ images, title }: GalleryProps) {
   );
 }
 
-export { PropertiesGallery };
+export default memo(PropertiesGallery, (prevProps, nextProps) => prevProps.images[0] === nextProps.images[0]);

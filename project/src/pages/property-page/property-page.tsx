@@ -5,8 +5,8 @@ import { CommonHeader } from '../../components/common-header/common-header';
 import { PageNotFound } from '../../components/page-not-found/page-not-found';
 import { MainItemCard } from '../../components/main-item-card/main-item-card';
 import { Map } from '../../components/map/map';
-import { PropertiesGallery } from '../../components/properties-gallery/properties-gallery';
-import { PropertiesDescriptions } from '../../components/properties-descriptions/properties-descriptions';
+import PropertiesGallery from '../../components/properties-gallery/properties-gallery';
+import PropertiesDescriptions from '../../components/properties-descriptions/properties-descriptions';
 
 import { fetchOfferAction, fetchOffersNearbyAction, fetchCommentsAction } from '../../store/api-actions';
 import { store } from '../../store';

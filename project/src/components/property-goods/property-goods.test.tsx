@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { PropertyGoods } from './property-goods';
+import PropertyGoods from './property-goods';
 
 
 describe('Component: PropertyGoods', () => {

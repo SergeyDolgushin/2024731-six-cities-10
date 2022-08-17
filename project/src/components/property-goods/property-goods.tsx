@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type PropertyGoodsProps = {
   goods: string[]
 };
@@ -19,4 +21,4 @@ function PropertyGoods({ goods }: PropertyGoodsProps) {
   );
 }
 
-export { PropertyGoods };
+export default memo(PropertyGoods, (prevProps, nextProps) => prevProps.goods[0] === nextProps.goods[0]);
