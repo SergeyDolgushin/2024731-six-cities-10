@@ -29,7 +29,7 @@ describe('Application Routing', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <MainItemCard card={makeFakeOfferforMainCardItem()} key={1} handlerCardMouseOver={onMouseOverAction} handlerCardMouseOut={onMouseOutAction} />
+          <MainItemCard card={makeFakeOfferforMainCardItem()} key={1} onCardMouseOver={onMouseOverAction} onCardMouseOut={onMouseOutAction} />
         </HistoryRouter>
       </Provider >
     );

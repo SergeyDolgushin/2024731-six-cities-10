@@ -10,6 +10,7 @@ const initialState = {
   },
   [NameSpace.Data]: {
     isDataLoaded: true,
+    isCommentsLoaded: true,
     isError: false,
     userComment: '',
     offers: [

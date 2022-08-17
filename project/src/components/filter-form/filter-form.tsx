@@ -7,7 +7,7 @@ import { getFilter } from '../../store/filter-process/selectors';
 const setActiveFilter = (activeFilter: string, filterType: string) => (activeFilter === filterType) ? 'places__option--active' : '';
 
 
-function FormFilter(): JSX.Element {
+function FilterForm(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
   const currentFilter = useAppSelector(getFilter);
   const dispatch = useAppDispatch();
@@ -39,4 +39,4 @@ function FormFilter(): JSX.Element {
   );
 }
 
-export { FormFilter };
+export { FilterForm };

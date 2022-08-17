@@ -13,6 +13,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: true,
+        isCommentsLoaded: true,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,
@@ -27,6 +28,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers,
         isDataLoaded: false,
+        isCommentsLoaded: true,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,
@@ -41,6 +43,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: true,
+        isCommentsLoaded: true,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,
@@ -55,6 +58,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: false,
+        isCommentsLoaded: true,
         isError: false,
         offer,
         offersNearby: state.offersNearby,
@@ -69,6 +73,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: false,
+        isCommentsLoaded: true,
         isError: false,
         offer: state.offer,
         offersNearby: offers,
@@ -82,7 +87,8 @@ describe('Reducer: dataProcess', () => {
     expect(dataProcess.reducer(state, { type: fetchCommentsAction.fulfilled.type, payload: mockComments }))
       .toEqual({
         offers: state.offers,
-        isDataLoaded: false,
+        isDataLoaded: true,
+        isCommentsLoaded: false,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,
@@ -97,6 +103,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: false,
+        isCommentsLoaded: true,
         isError: false,
         offer,
         offersNearby: state.offersNearby,
@@ -111,6 +118,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: true,
+        isCommentsLoaded: true,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,
@@ -124,7 +132,8 @@ describe('Reducer: dataProcess', () => {
     expect(dataProcess.reducer(state, { type: sendComment.fulfilled.type, payload: mockComments }))
       .toEqual({
         offers: state.offers,
-        isDataLoaded: false,
+        isDataLoaded: true,
+        isCommentsLoaded: false,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,
@@ -139,6 +148,7 @@ describe('Reducer: dataProcess', () => {
       .toEqual({
         offers: state.offers,
         isDataLoaded: true,
+        isCommentsLoaded: true,
         isError: false,
         offer: state.offer,
         offersNearby: state.offersNearby,

@@ -1,5 +1,5 @@
 import { MainItemCard } from '../../components/main-item-card/main-item-card';
-import { FormFilter } from '../filter-form/filter-form';
+import { FilterForm } from '../filter-form/filter-form';
 import { Map } from '../map/map';
 import { MAP_CLASS_NAME } from '../../const';
 
@@ -51,8 +51,8 @@ function CardsList({ cards }: CardsProps): JSX.Element {
     <MainItemCard
       card={item}
       key={item.id}
-      handlerCardMouseOver={handlerCardMouseOver}
-      handlerCardMouseOut={handlerCardMouseOut}
+      onCardMouseOver={handlerCardMouseOver}
+      onCardMouseOut={handlerCardMouseOut}
     />
   ));
 
@@ -72,7 +72,7 @@ function CardsList({ cards }: CardsProps): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{cards.length} places to stay in {cards[0].city.name}</b>
-          <FormFilter />
+          <FilterForm />
           <div className="cities__places-list places__list tabs__content">
             {cardsView}
           </div>

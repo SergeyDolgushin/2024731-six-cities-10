@@ -36,18 +36,18 @@ export const dataProcess = createSlice({
         state.isDataLoaded = false;
       })
       .addCase(fetchCommentsAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isCommentsLoaded = true;
       })
       .addCase(fetchCommentsAction.fulfilled, (state, action) => {
         state.comments = action.payload;
-        state.isDataLoaded = false;
+        state.isCommentsLoaded = false;
       })
       .addCase(sendComment.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isCommentsLoaded = true;
       })
       .addCase(sendComment.fulfilled, (state, action) => {
         state.comments = action.payload;
-        state.isDataLoaded = false;
+        state.isCommentsLoaded = false;
       })
       .addCase(setStatus.pending, (state) => {
         state.isDataLoaded = true;

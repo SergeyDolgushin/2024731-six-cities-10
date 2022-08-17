@@ -9,11 +9,11 @@ import { AppRoute } from '../../const';
 
 type MainItemCardProps = {
   card: Card,
-  handlerCardMouseOver?: (evt: MouseEvent<HTMLDivElement>) => void;
-  handlerCardMouseOut?: (evt: MouseEvent<HTMLDivElement>) => void;
+  onCardMouseOver?: (evt: MouseEvent<HTMLDivElement>) => void;
+  onCardMouseOut?: (evt: MouseEvent<HTMLDivElement>) => void;
 }
 
-function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut }: MainItemCardProps): JSX.Element {
+function MainItemCard({ card, onCardMouseOver, onCardMouseOut }: MainItemCardProps): JSX.Element {
   const { price, rating, images, title, type, id, location, isFavorite } = card;
   const { longitude, latitude } = location;
 
@@ -30,8 +30,8 @@ function MainItemCard({ card, handlerCardMouseOver, handlerCardMouseOut }: MainI
       data-lat={`${latitude}`}
       data-lng={`${longitude}`}
       data-title={`${title}`}
-      onMouseOver={handlerCardMouseOver}
-      onMouseOut={handlerCardMouseOut}
+      onMouseOver={onCardMouseOver}
+      onMouseOut={onCardMouseOut}
     >
       <div className="cities__image-wrapper place-card__image-wrapper" >
         <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >
