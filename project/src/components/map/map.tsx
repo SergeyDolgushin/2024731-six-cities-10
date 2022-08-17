@@ -57,7 +57,7 @@ function Map(props: MapProps): JSX.Element {
 
   return (
     <section className={`map ${className}`}>
-      <div style={{ height: `${mapHeight}` }} ref={mapRef}></div>
+      <div style={{ height: `${mapHeight}` }} ref={mapRef} data-testid={'leaflet'}></div>
     </section >
   );
 }

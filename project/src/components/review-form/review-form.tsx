@@ -5,12 +5,16 @@ import { sendComment } from '../../store/api-actions';
 
 
 const ratingStars: ReadonlyArray<number> = [5, 4, 3, 2, 1];
+export const MIN_REVIEW_LENGTH = 50;
+export const MAX_REVIEW_LENGTH = 300;
 
 const checkLength = (data: string, isLoaded: boolean, isRating: number) => {
   const lengthData = data.length;
   return !(lengthData >= 50 && lengthData <= 300 && isRating) && !isLoaded;
 
 };
+
+const isChecked = (rating: number, index: number): boolean => rating === index;
 
 function ReviewForm() {
   const [formData, setFormData] = useState({
@@ -32,6 +36,7 @@ function ReviewForm() {
     setFormData({ comment: '', rating: 0 });
   };
 
+
   const ratingInputs: JSX.Element[] = ratingStars.map((item) => (
     <Fragment key={item}>
       <input className="form__rating-input visually-hidden"
@@ -40,6 +45,7 @@ function ReviewForm() {
         value={item}
         id={`${item}-stars`}
         type="radio"
+        checked={isChecked(Number(formData.rating), item)}
       />
       <label htmlFor={`${item}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
         <svg className="form__star-image" width="37" height="33" >

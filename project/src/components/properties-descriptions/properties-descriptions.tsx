@@ -38,6 +38,7 @@ function PropertiesDescriptions({ card }: cardProps) {
             className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active' : ''}`}
             onClick={handleOnChangeStatus}
             type="button"
+            data-testid='favorite button'
           >
             <svg className="property__bookmark-icon" width="31" height="33">
               <use xlinkHref="#icon-bookmark"></use>
