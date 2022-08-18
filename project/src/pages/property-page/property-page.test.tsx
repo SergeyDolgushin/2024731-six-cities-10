@@ -7,7 +7,7 @@ import { PropertyPage } from './property-page';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { makeFakeOffer, makeFakeOffers, mockComments } from '../../utils/mocks';
-import { idForTest } from '../../components/loading-screen/constants';
+import { ID_FOR_TEST } from '../../components/loading-screen/constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -63,7 +63,7 @@ describe('Component: PropertyPage', () => {
 
     expect(screen.queryByText(fakeOffer.title)).not.toBeInTheDocument();
     expect(screen.queryByText(mockComments[0].comment)).not.toBeInTheDocument();
-    expect(screen.getByTestId(idForTest)).toBeInTheDocument();
+    expect(screen.getByTestId(ID_FOR_TEST)).toBeInTheDocument();
 
   });
 });

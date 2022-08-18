@@ -1,3 +1,3 @@
-const idForTest = 'favorite button';
+const ID_FOR_TEST = 'favorite button';
 
-export { idForTest };
+export { ID_FOR_TEST };

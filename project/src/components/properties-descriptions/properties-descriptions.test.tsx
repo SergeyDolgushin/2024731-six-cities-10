@@ -9,7 +9,7 @@ import HistoryRouter from '../../components/history-route/history-route';
 import { AuthorizationStatus, FilterType } from '../../const';
 import PropertiesDescriptions from './properties-descriptions';
 import { makeFakeOffer, makeFakeOffers, mockComments } from '../../utils/mocks';
-import { idForTest } from './constants';
+import { ID_FOR_TEST } from './constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -39,7 +39,7 @@ describe('Component: PropertiesDescriptions', () => {
 
     expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();
 
-    await userEvent.click(screen.getByTestId(idForTest));
+    await userEvent.click(screen.getByTestId(ID_FOR_TEST));
     const actions = store.getActions();
     expect(actions[0].type).toBe('offer/status/pending');
 

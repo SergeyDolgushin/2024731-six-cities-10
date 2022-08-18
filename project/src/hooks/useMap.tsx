@@ -9,7 +9,7 @@ function useMap(
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
-  const { latitude, longitude } = city.location;
+  const { latitude, longitude, zoom } = city.location;
   useEffect(() => {
     if (isRenderedRef.current && map !== null) {
       map.setView({ lat: latitude, lng: longitude }, map.getZoom());
@@ -21,7 +21,7 @@ function useMap(
           lat: latitude,
           lng: longitude
         },
-        zoom: 10
+        zoom: zoom
       });
       const layer = new TileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
@@ -35,7 +35,7 @@ function useMap(
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, map, city, latitude, longitude]);
+  }, [mapRef, map, city, latitude, longitude, zoom]);
   return map;
 }
 

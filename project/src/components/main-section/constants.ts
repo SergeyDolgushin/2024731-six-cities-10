@@ -1,3 +1,3 @@
-const emptyClass = 'page__main--index-empty';
+const CLASS_EMPTY = 'page__main--index-empty';
 
-export { emptyClass };
+export { CLASS_EMPTY };

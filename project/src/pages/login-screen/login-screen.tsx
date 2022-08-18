@@ -11,7 +11,7 @@ import { AppRoute, AuthorizationStatus, CITIES } from '../../const';
 import { AuthData } from '../../types/types';
 import { MouseEventHandler, useEffect } from 'react';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { errorMessageForPassword, testIdForEmail, testIdForPassword } from './constants';
+import { ERROR_MESSAGE_PASSWORD, ID_TEST_EMAIL, ID_TEST_PASSWORD } from './constants';
 
 
 function LoginScreen(): JSX.Element {
@@ -53,7 +53,7 @@ function LoginScreen(): JSX.Element {
                 <input
                   {...register('email', { pattern: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i })}
                   className="login__input form__input"
-                  data-testid={testIdForEmail}
+                  data-testid={ID_TEST_EMAIL}
                   type="email"
                   name="email"
                   placeholder="Email"
@@ -68,13 +68,13 @@ function LoginScreen(): JSX.Element {
                       required: 'This input is required.',
                       pattern: {
                         value: /(?=.*[0-9])(?=.*[A-Za-z])[0-9a-zA-Z]{2,}/i,
-                        message: errorMessageForPassword
+                        message: ERROR_MESSAGE_PASSWORD
                       },
 
                     })
                   }
                   className="login__input form__input"
-                  data-testid={testIdForPassword}
+                  data-testid={ID_TEST_PASSWORD}
                   type="password"
                   name="password"
                   placeholder="Password"
