@@ -6,7 +6,7 @@ import { MAP_CLASS_NAME } from '../../const';
 import type { CardsProps, Point, Card } from '../../types/types';
 import { useAppSelector } from '../../hooks';
 import { MouseEvent, useEffect, useState } from 'react';
-import { LoadingScreen } from '../../pages/loading-screen/loading-screen';
+import { LoadingScreen } from '../loading-screen/loading-screen';
 
 const makeCurrentPoint = (currentCardId: DOMStringMap | null) => {
   if (currentCardId) {

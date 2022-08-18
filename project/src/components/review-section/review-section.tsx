@@ -3,7 +3,7 @@ import { ReviewsList } from '../reviews-list/reviews-list';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { LoadingScreen } from '../../pages/loading-screen/loading-screen';
+import { LoadingScreen } from '../loading-screen/loading-screen';
 
 function ReviewSection() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);

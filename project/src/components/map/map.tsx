@@ -3,9 +3,11 @@ import { Icon, Marker } from 'leaflet';
 import { useMap } from '../../hooks/useMap';
 import { City, Points, Point } from '../../types/types';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MAP_CLASS_NAME } from '../../const';
+import { idForTest } from './constants';
 
 import 'leaflet/dist/leaflet.css';
 import './style.css';
+
 
 type MapProps = {
   city: City;
@@ -57,7 +59,7 @@ function Map(props: MapProps): JSX.Element {
 
   return (
     <section className={`map ${className}`}>
-      <div style={{ height: `${mapHeight}` }} ref={mapRef} data-testid={'leaflet'}></div>
+      <div style={{ height: `${mapHeight}` }} ref={mapRef} data-testid={idForTest}></div>
     </section >
   );
 }

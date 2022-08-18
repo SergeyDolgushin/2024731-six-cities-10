@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import { ReviewForm, MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from './review-form';
+import { ReviewForm } from './review-form';
 import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import userEvent from '@testing-library/user-event';
+import { ReviewLengthType } from './constants';
 
+const { MinReviewLength, MaxReviewLength } = ReviewLengthType;
 const mockStore = configureMockStore();
 const store = mockStore({
   DATA: { isDataLoaded: false },
@@ -33,20 +35,20 @@ describe('Component: ReviewForm', () => {
     const textarea = screen.getByRole('textbox');
     const [star] = screen.getAllByRole('radio');
 
-    await userEvent.type(textarea, '*'.repeat(MAX_REVIEW_LENGTH / 2));
+    await userEvent.type(textarea, '*'.repeat(MaxReviewLength / 2));
     expect(screen.getByRole('button')).toHaveAttribute('disabled');
 
     await userEvent.click(star);
 
-    await userEvent.type(textarea, '*'.repeat(MAX_REVIEW_LENGTH + 2));
+    await userEvent.type(textarea, '*'.repeat(MaxReviewLength + 2));
     expect(screen.getByRole('button')).toHaveAttribute('disabled', '');
 
     await userEvent.clear(textarea);
-    await userEvent.type(textarea, '*'.repeat(MIN_REVIEW_LENGTH - 1));
+    await userEvent.type(textarea, '*'.repeat(MinReviewLength - 1));
     expect(screen.getByRole('button')).toHaveAttribute('disabled', '');
 
     await userEvent.clear(textarea);
-    await userEvent.type(textarea, '*'.repeat(Math.round(MAX_REVIEW_LENGTH / 2)));
+    await userEvent.type(textarea, '*'.repeat(Math.round(MaxReviewLength / 2)));
 
     expect(screen.getByRole('button')).not.toHaveAttribute('disabled');
 
