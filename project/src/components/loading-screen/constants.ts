@@ -1,3 +1,3 @@
-const idForTest = 'Loader';
+const ID_FOR_TEST = 'Loader';
 
-export { idForTest };
+export { ID_FOR_TEST };

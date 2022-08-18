@@ -8,7 +8,7 @@ import HistoryRouter from '../../components/history-route/history-route';
 
 import { AppRoute } from '../../const';
 import { store } from '../../store';
-import { testIdForEmail, testIdForPassword } from './constants';
+import { ID_TEST_EMAIL, ID_TEST_PASSWORD } from './constants';
 
 
 describe('Component: LoginScreen', () => {
@@ -27,8 +27,8 @@ describe('Component: LoginScreen', () => {
     expect(screen.getByText(/E-mail/i)).toBeInTheDocument();
     expect(screen.getByText(/Password/i)).toBeInTheDocument();
 
-    await userEvent.type(screen.getByTestId(testIdForEmail), 'userEmail');
-    await userEvent.type(screen.getByTestId(testIdForPassword), 'userPassword');
+    await userEvent.type(screen.getByTestId(ID_TEST_EMAIL), 'userEmail');
+    await userEvent.type(screen.getByTestId(ID_TEST_PASSWORD), 'userPassword');
 
     expect(screen.getByDisplayValue(/userEmail/i)).toBeInTheDocument();
     expect(screen.getByDisplayValue(/userPassword/i)).toBeInTheDocument();

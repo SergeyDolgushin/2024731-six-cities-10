@@ -1,4 +1,4 @@
-const idForTest = 'Properties galleery image';
+const ID_FOR_TEST = 'Properties galleery image';
 
 const imagesForTest = [
   'image',
@@ -11,4 +11,4 @@ const imagesForTest = [
 
 const titleForTest = 'title';
 
-export { idForTest, imagesForTest, titleForTest };
+export { ID_FOR_TEST, imagesForTest, titleForTest };

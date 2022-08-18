@@ -1,3 +1,3 @@
-const idForTest = 'leaflet';
+const ID_FOR_TEST = 'leaflet';
 
-export { idForTest };
+export { ID_FOR_TEST };

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { idForTest } from './constants';
+import { ID_FOR_TEST } from './constants';
 import { LoadingScreen } from './loading-screen';
 
 
@@ -8,6 +8,6 @@ describe('Component: EmptyMainPage', () => {
 
     render(<LoadingScreen />);
 
-    expect(screen.getByTestId(idForTest)).toBeInTheDocument();
+    expect(screen.getByTestId(ID_FOR_TEST)).toBeInTheDocument();
   });
 });

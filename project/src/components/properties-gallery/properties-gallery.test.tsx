@@ -1,7 +1,7 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { idForTest, imagesForTest, titleForTest } from './constants';
+import { ID_FOR_TEST, imagesForTest, titleForTest } from './constants';
 import PropertiesGallery from './properties-gallery';
 
 const mockStore = configureMockStore();
@@ -19,7 +19,7 @@ describe('Component: PropertiesGallery', () => {
       </Provider>
     );
 
-    expect(screen.getAllByTestId(idForTest).length).toBe(imagesForTest.length);
+    expect(screen.getAllByTestId(ID_FOR_TEST).length).toBe(imagesForTest.length);
   });
 
   it('should render correctly if is isDataLoading=true', () => {
@@ -34,6 +34,6 @@ describe('Component: PropertiesGallery', () => {
       </Provider>
     );
 
-    expect(screen.queryByTestId(idForTest)).not.toBeInTheDocument();
+    expect(screen.queryByTestId(ID_FOR_TEST)).not.toBeInTheDocument();
   });
 });

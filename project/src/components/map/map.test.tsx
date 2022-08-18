@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Map } from './map';
 import { makeFakeOffer, makeFakeOffers } from '../../utils/mocks';
 import { Point } from '../../types/types';
-import { idForTest } from './constants';
+import { ID_FOR_TEST } from './constants';
 
 
 const points = makeFakeOffers().map((item) => {
@@ -28,6 +28,6 @@ describe('Component: Map', () => {
   it('should render map-section correctly', () => {
     render(<Map className='class' points={points} selectedPoint={point()} city={makeFakeOffer().city} />);
 
-    expect(screen.getByTestId(idForTest)).toBeInTheDocument();
+    expect(screen.getByTestId(ID_FOR_TEST)).toBeInTheDocument();
   });
 });
