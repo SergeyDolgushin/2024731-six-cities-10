@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { emptyClass } from './constants';
 import { MainSection } from './main-section';
 
 describe('Component: MainSection', () => {
@@ -15,7 +16,7 @@ describe('Component: MainSection', () => {
       </MainSection>
     );
 
-    expect(screen.queryByTestId('page__main--index-empty')).not.toBeInTheDocument();
+    expect(screen.queryByTestId(emptyClass)).not.toBeInTheDocument();
     expect(screen.getAllByText('MainSection is rendered').length).toBe(childrens.length);
   });
 
@@ -32,7 +33,7 @@ describe('Component: MainSection', () => {
       </MainSection>
     );
 
-    expect(screen.getByTestId('page__main--index-empty')).toBeInTheDocument();
+    expect(screen.getByTestId(emptyClass)).toBeInTheDocument();
   });
 
 });

@@ -1,13 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import HistoryRouter from '../../components/history-route/history-route';
-import { AuthorizationStatus, FilterType } from '../../const';
-import PropertiesDescriptions from './properties-descriptions';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import userEvent from '@testing-library/user-event';
+
+import HistoryRouter from '../../components/history-route/history-route';
+import { AuthorizationStatus, FilterType } from '../../const';
+import PropertiesDescriptions from './properties-descriptions';
 import { makeFakeOffer, makeFakeOffers, mockComments } from '../../utils/mocks';
+import { idForTest } from './constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -37,7 +39,7 @@ describe('Component: PropertiesDescriptions', () => {
 
     expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();
 
-    await userEvent.click(screen.getByTestId('favorite button'));
+    await userEvent.click(screen.getByTestId(idForTest));
     const actions = store.getActions();
     expect(actions[0].type).toBe('offer/status/pending');
 

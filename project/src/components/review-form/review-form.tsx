@@ -2,15 +2,13 @@ import { useState, ChangeEvent, Fragment, MouseEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { sendComment } from '../../store/api-actions';
+import { ReviewLengthType, ratingStars } from './constants';
 
-
-const ratingStars: ReadonlyArray<number> = [5, 4, 3, 2, 1];
-export const MIN_REVIEW_LENGTH = 50;
-export const MAX_REVIEW_LENGTH = 300;
 
 const checkLength = (data: string, isLoaded: boolean, isRating: number) => {
+  const { MinReviewLength, MaxReviewLength } = ReviewLengthType;
   const lengthData = data.length;
-  return !(lengthData >= 50 && lengthData <= 300 && isRating) && !isLoaded;
+  return !(lengthData >= MinReviewLength && lengthData <= MaxReviewLength && isRating) && !isLoaded;
 
 };
 

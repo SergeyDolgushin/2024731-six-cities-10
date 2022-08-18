@@ -13,7 +13,7 @@ import { store } from '../../store';
 
 import type { Point } from '../../types/types';
 import { useAppSelector } from '../../hooks';
-import { LoadingScreen } from '../loading-screen/loading-screen';
+import { LoadingScreen } from '../../components/loading-screen/loading-screen';
 import { getOffersNearby, getOffer } from '../../store/data-process/selectors';
 
 const MAP_CLASS_NAME = 'property__map';

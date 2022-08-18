@@ -1,13 +1,14 @@
 import { memo, MouseEvent } from 'react';
+import { useAppDispatch } from '../../hooks';
 
 import { ReviewSection } from '../../components/review-section/review-section';
-import { useAppDispatch } from '../../hooks';
 import { fetchOffersAction, setStatus } from '../../store/api-actions';
 import { Card } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
 import PropertyFeatures from '../property-features/property-features';
 import PropertyGoods from '../property-goods/property-goods';
 import { PropertyHost } from '../propery-host/property-host';
+import { idForTest } from './constants';
 
 type cardProps = {
   card: Card;
@@ -38,7 +39,7 @@ function PropertiesDescriptions({ card }: cardProps) {
             className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active' : ''}`}
             onClick={handleOnChangeStatus}
             type="button"
-            data-testid='favorite button'
+            data-testid={idForTest}
           >
             <svg className="property__bookmark-icon" width="31" height="33">
               <use xlinkHref="#icon-bookmark"></use>

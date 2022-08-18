@@ -1,6 +1,7 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { idForTest, imagesForTest, titleForTest } from './constants';
 import PropertiesGallery from './properties-gallery';
 
 const mockStore = configureMockStore();
@@ -12,24 +13,13 @@ describe('Component: PropertiesGallery', () => {
       DATA: { isDataLoaded: false },
     });
 
-    const images = [
-      'image',
-      'image',
-      'image',
-      'image',
-      'image',
-      'image',
-    ];
-
-    const title = 'title';
-
     render(
       <Provider store={store}>
-        <PropertiesGallery images={images} title={title} />
+        <PropertiesGallery images={imagesForTest} title={titleForTest} />
       </Provider>
     );
 
-    expect(screen.getAllByTestId('Image').length).toBe(images.length);
+    expect(screen.getAllByTestId(idForTest).length).toBe(imagesForTest.length);
   });
 
   it('should render correctly if is isDataLoading=true', () => {
@@ -38,23 +28,12 @@ describe('Component: PropertiesGallery', () => {
       DATA: { isDataLoaded: true },
     });
 
-    const images = [
-      'image',
-      'image',
-      'image',
-      'image',
-      'image',
-      'image',
-    ];
-
-    const title = 'title';
-
     render(
       <Provider store={store}>
-        <PropertiesGallery images={images} title={title} />
+        <PropertiesGallery images={imagesForTest} title={titleForTest} />
       </Provider>
     );
 
-    expect(screen.queryByTestId('Image')).not.toBeInTheDocument();
+    expect(screen.queryByTestId(idForTest)).not.toBeInTheDocument();
   });
 });

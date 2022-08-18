@@ -1,10 +1,12 @@
+import { emptyClass } from './constants';
+
 type MainChildrens = {
   isEmpty: boolean,
   children: JSX.Element[],
 }
 
 function MainSection({ isEmpty, children }: MainChildrens): JSX.Element {
-  const classEmpty = isEmpty ? 'page__main--index-empty' : '';
+  const classEmpty = isEmpty ? emptyClass : '';
 
   return (
     <main className={`page__main page__main--index ${classEmpty}`} data-testid={`${classEmpty}`} >
