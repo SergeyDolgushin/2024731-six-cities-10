@@ -1,11 +1,12 @@
-import { generatePath, Link } from 'react-router-dom';
+import { generatePath, Link, useNavigate } from 'react-router-dom';
 import { MouseEvent } from 'react';
 
 import type { Card } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setStatus, fetchOffersAction } from '../../store/api-actions';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type MainItemCardProps = {
   card: Card,
@@ -16,12 +17,20 @@ type MainItemCardProps = {
 function MainItemCard({ card, onCardMouseOver, onCardMouseOut }: MainItemCardProps): JSX.Element {
   const { price, rating, images, title, type, id, location, isFavorite } = card;
   const { longitude, latitude } = location;
+  const navigate = useNavigate();
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   const dispatch = useAppDispatch();
 
   const handleOnChangeStatus = (evt: MouseEvent) => {
+    if (authStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.Login);
+
+      return;
+    }
     dispatch(setStatus({ id, isFavorite }));
     dispatch(fetchOffersAction());
+
   };
 
   return (

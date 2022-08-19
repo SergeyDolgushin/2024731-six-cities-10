@@ -4,9 +4,10 @@ import { FavoritesEmpty } from '../../components/favorites-empty/favorites-empty
 
 import type { CardsProps, Card } from '../../types/types';
 
-const favoritesPlaces: JSX.Element[] = [];
 
 function favorites(offers: Set<string | null>, cards: Card[]) {
+  const favoritesPlaces: JSX.Element[] = [];
+
   offers.forEach((item) => {
     if (item) {
       favoritesPlaces.push(<FavoritesCities cards={cards} city={item} key={item} />);

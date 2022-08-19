@@ -29,11 +29,22 @@ function FilterForm(): JSX.Element {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className={`places__options places__options--custom ${isOpen ? 'places__options--opened' : ''}`} onClick={handleSetFilter}>
-        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.POPULAR)}`} tabIndex={0}>{FilterType.POPULAR}</li>
-        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.LOW)}`} tabIndex={1}>{FilterType.LOW}</li>
-        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.HIGH)}`} tabIndex={2}>{FilterType.HIGH}</li>
-        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.TOP)}`} tabIndex={3}>{FilterType.TOP}</li>
+      <ul
+        className={`places__options places__options--custom ${isOpen ? 'places__options--opened' : ''}`}
+        onClick={handleSetFilter}
+      >
+        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.POPULAR)}`} tabIndex={0}>
+          {FilterType.POPULAR}
+        </li>
+        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.LOW)}`} tabIndex={1}>
+          {FilterType.LOW}
+        </li>
+        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.HIGH)}`} tabIndex={2}>
+          {FilterType.HIGH}
+        </li>
+        <li className={`places__option ${setActiveFilter(currentFilter, FilterType.TOP)}`} tabIndex={3}>
+          {FilterType.TOP}
+        </li>
       </ul>
     </form>
   );

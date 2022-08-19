@@ -1,18 +1,15 @@
 import { Comment } from '../../types/types';
 import { convertRatingtoStar } from '../../utils/converter';
+import { months } from './constants';
 
 type ReviewsItemProps = {
   review: Comment;
 }
 
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June', 'Jule', 'August', 'September', 'October', 'November', 'December',
-];
-
 const formatDate = (dateString: string) => {
   const dateObject = new Date(dateString);
 
-  return `${MONTHS[dateObject.getMonth()]} ${dateObject.getFullYear()}`;
+  return `${months[dateObject.getMonth()]} ${dateObject.getFullYear()}`;
 };
 
 function ReviewsItem({ review }: ReviewsItemProps) {
@@ -22,7 +19,13 @@ function ReviewsItem({ review }: ReviewsItemProps) {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
+          <img
+            className="reviews__avatar user__avatar"
+            src={avatarUrl}
+            width="54"
+            height="54"
+            alt="Reviews avatar"
+          />
         </div>
         <span className="reviews__user-name">
           {name}

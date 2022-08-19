@@ -16,7 +16,6 @@ const makeCurrentPoint = (currentCardId: DOMStringMap | null) => {
       title: String(currentCardId.title),
     };
   }
-  return undefined;
 };
 
 const makePointsContainer = (cards: Card[]) => (
@@ -78,7 +77,12 @@ function CardsList({ cards }: CardsProps): JSX.Element {
           </div>
         </section>
         <div className="cities__right-section">
-          <Map className={MAP_CLASS_NAME} city={cards[0].city} points={makePointsContainer(cards)} selectedPoint={currentCard} />
+          <Map
+            className={MAP_CLASS_NAME}
+            city={cards[0].city}
+            points={makePointsContainer(cards)}
+            selectedPoint={currentCard}
+          />
         </div>
       </div>
     </div>

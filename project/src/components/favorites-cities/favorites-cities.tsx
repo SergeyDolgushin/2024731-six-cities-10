@@ -7,7 +7,10 @@ type FavoritesCitiesProps = {
 };
 
 const makeCardsViews = ({ cards, city }: FavoritesCitiesProps) => (
-  cards.map((card) => (card.isFavorite && card.city.name === city) ? <FavoriteCard card={card} key={card.id} /> : null)
+  cards.map((card) =>
+    (card.isFavorite && card.city.name === city)
+      ?
+      <FavoriteCard card={card} key={card.id} /> : null)
 );
 
 function FavoritesCities({ cards, city }: FavoritesCitiesProps) {

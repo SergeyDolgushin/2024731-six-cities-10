@@ -1,33 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { useAppDispatch } from '../../hooks';
-import { logoutAction } from '../../store/api-actions';
+import { fetchOffersAction, logoutAction } from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { getUserInfo } from '../../services/token';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 import './common-header.css';
 import { getOffers } from '../../store/data-process/selectors';
-
-
-function CommonHeader(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
-  return (
-    <header className="header">
-      <div className="container">
-        <div className="header__wrapper">
-          <div className="header__left">
-            <Link to={AppRoute.Root} className="header__logo-link header__logo-link--active">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-            </Link>
-          </div>
-          {(authorizationStatus === AuthorizationStatus.Auth) ? <UserInfo /> : <UserNotLogged />}
-        </div>
-      </div>
-    </header>
-  );
-}
 
 function UserInfo(): JSX.Element {
   const offers = useAppSelector(getOffers);
@@ -40,6 +20,7 @@ function UserInfo(): JSX.Element {
 
   const handlerLogOut = () => {
     dispatch(logoutAction());
+    dispatch(fetchOffersAction());
     navigate(AppRoute.Root);
   };
 
@@ -78,6 +59,25 @@ function UserNotLogged(): JSX.Element {
         </li>
       </ul>
     </nav>
+  );
+}
+
+function CommonHeader(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  return (
+    <header className="header">
+      <div className="container">
+        <div className="header__wrapper">
+          <div className="header__left">
+            <Link to={AppRoute.Root} className="header__logo-link header__logo-link--active">
+              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+            </Link>
+          </div>
+          {(authorizationStatus === AuthorizationStatus.Auth) ? <UserInfo /> : <UserNotLogged />}
+        </div>
+      </div>
+    </header>
   );
 }
 

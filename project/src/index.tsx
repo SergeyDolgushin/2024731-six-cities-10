@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -18,10 +19,12 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
-    <Router>
-      <ToastContainer />
-      <App />
-    </Router>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <Router>
+        <ToastContainer autoClose={2000} limit={1} />
+        <App />
+      </Router>
+    </Provider>
+  </React.StrictMode>
 );

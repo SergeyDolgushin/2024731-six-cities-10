@@ -32,7 +32,11 @@ const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError) => {
       if (error.response && shouldDisplayError(error.response)) {
-        toast(error.response.data.error);
+        if (error.response.data.error.includes('Hotel id')) {
+          toast('Отеля с таким id не существует');
+        } else {
+          toast(error.response.data.error);
+        }
       }
 
       throw error;

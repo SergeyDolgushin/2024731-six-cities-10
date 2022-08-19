@@ -1,5 +1,5 @@
 import { memo, MouseEvent } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import { ReviewSection } from '../../components/review-section/review-section';
 import { fetchOffersAction, setStatus } from '../../store/api-actions';
@@ -9,6 +9,9 @@ import PropertyFeatures from '../property-features/property-features';
 import PropertyGoods from '../property-goods/property-goods';
 import { PropertyHost } from '../propery-host/property-host';
 import { ID_FOR_TEST } from './constants';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 type cardProps = {
   card: Card;
@@ -17,10 +20,19 @@ type cardProps = {
 function PropertiesDescriptions({ card }: cardProps) {
   const { isPremium, rating, goods, title, price, type, maxAdults, bedrooms, id, isFavorite } = card;
 
+  const navigate = useNavigate();
+  const authStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   const handleOnChangeStatus = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
+
+    if (authStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.Login);
+
+      return;
+    }
+
     dispatch(setStatus({ id, isFavorite }));
     dispatch(fetchOffersAction());
   };
@@ -36,12 +48,12 @@ function PropertiesDescriptions({ card }: cardProps) {
             {title}
           </h1>
           <button
-            className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active' : ''}`}
+            className={`property__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`}
             onClick={handleOnChangeStatus}
             type="button"
             data-testid={ID_FOR_TEST}
           >
-            <svg className="property__bookmark-icon" width="31" height="33">
+            <svg className="property__bookmark-icon place-card__bookmark-icon" width="31" height="33">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>

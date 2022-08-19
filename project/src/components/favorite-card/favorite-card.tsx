@@ -21,7 +21,12 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >
-          <img className="place-card__image" src={previewImage} width="150" height="110" alt={`${title}`} />
+          <img
+            className="place-card__image"
+            src={previewImage} width="150"
+            height="110"
+            alt={`${title}`}
+          />
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">
@@ -48,7 +53,9 @@ function FavoriteCard({ card }: CardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >{title}</Link>
+          <Link to={generatePath(AppRoute.Offer, { selectedCard: String(id) })} >
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

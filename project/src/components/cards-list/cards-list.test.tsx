@@ -2,6 +2,7 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
+import { AuthorizationStatus } from '../../const';
 import { makeFakeOffers } from '../../utils/mocks';
 import HistoryRouter from '../history-route/history-route';
 import { CardsList } from './cards-list';
@@ -14,6 +15,7 @@ describe('Component: CardsList', () => {
     const store = mockStore({
       DATA: { isDataLoaded: false },
       FILTER: { name: 'Paris' },
+      USER: { authorizationStatus: AuthorizationStatus.Auth }
     });
 
     const history = createMemoryHistory();
