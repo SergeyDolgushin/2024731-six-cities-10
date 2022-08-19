@@ -5,7 +5,7 @@ import { FavoritesEmpty } from '../../components/favorites-empty/favorites-empty
 import type { CardsProps, Card } from '../../types/types';
 
 
-function favorites(offers: Set<string | null>, cards: Card[]) {
+function makeFavoritesCards(offers: Set<string | null>, cards: Card[]) {
   const favoritesPlaces: JSX.Element[] = [];
 
   offers.forEach((item) => {
@@ -34,7 +34,7 @@ function FavoritesPage({ cards }: CardsProps): JSX.Element {
       <CommonHeader />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          {currentCities.size !== 1 ? favorites(currentCities, cards) : <FavoritesEmpty />}
+          {currentCities.size !== 1 ? makeFavoritesCards(currentCities, cards) : <FavoritesEmpty />}
         </div>
       </main>
       <footer className="footer container">

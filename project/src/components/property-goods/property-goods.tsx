@@ -5,7 +5,7 @@ type PropertyGoodsProps = {
 };
 
 function PropertyGoods({ goods }: PropertyGoodsProps) {
-  const propertiesGoods: JSX.Element[] = goods.map((item) => (
+  const goodsProperties: JSX.Element[] = goods.map((item) => (
     <li className="property__inside-item" key={item}>
       {item}
     </li>
@@ -15,7 +15,7 @@ function PropertyGoods({ goods }: PropertyGoodsProps) {
     <div className="property__inside">
       <h2 className="property__inside-title">What&apos;s inside</h2>
       <ul className="property__inside-list">
-        {propertiesGoods}
+        {goodsProperties}
       </ul>
     </div>
   );
