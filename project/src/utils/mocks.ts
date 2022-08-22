@@ -7,7 +7,7 @@ export const makeFakeOffer = (): Card => ({
   images: [
     image.abstract()
   ],
-  title: lorem.word(),
+  title: lorem.word(10) + lorem.word(10),
   id: datatype.number(500),
   isFavorite: false,
   isPremium: false,
